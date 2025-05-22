@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bank Nifty Options - Trading Signals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- FontAwesome for icons -->
+  <!-- Removed Chart.js script -->
+  <style>
+    :root {
+      --dark-bg-top-bottom: rgb(3, 3, 3); /* Darkest background for nav and footer */
+      --dark-bg-middle: rgb(0, 8, 17); /* Darker background for sections */
+      --accent1: #00f2fa; /* Turquoise blue 1 */
+      --accent2: #ffffff; /* Brighter turquoise blue for main headline */
+      --button-color: #00f0f7; /* Solid button color */
+      --button-text-color: var(--dark-bg-top-bottom); /* Dark text on bright button */
+      --golden-color: #ffcc00; /* Specific golden color for text/icons */
+      --card-bg: rgba(255, 255, 255, 0.05); /* Slightly transparent card background */
+      --max-content-width: 1024px; /* Desktop content width limit */
+      
+      /* Standardized spacing */
+      --section-padding: 3rem; /* Standard section vertical padding */
+      --section-padding-h: 1.5rem; /* Standard section horizontal padding */
+      --section-padding-mobile: 2rem; /* Mobile section vertical padding */
+      --section-padding-h-mobile: 1rem; /* Mobile section horizontal padding */
+      --content-margin: 1.5rem; /* Standard margin between content elements */
+      --content-margin-mobile: 1rem; /* Mobile margin between content elements */
+      
+      /* Standardized typography */
+      --h1-size: 2.5rem; /* Main heading size */
+      --h2-size: 2rem; /* Section heading size */
+      --h3-size: 1.5rem; /* Subsection heading size */
+      --text-size: 1rem; /* Normal text size */
+      --text-small: 0.9rem; /* Small text size */
+      --text-xs: 0.8rem; /* Extra small text size */
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); } /* Adjust bounce height */
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--dark-bg-middle); /* Default background for body */
+      color: white;
+      overflow-x: hidden;
+      line-height: 1.6;
+      font-size: 1rem; /* Base font size */
+      scroll-behavior: smooth;
+    }
+
+    /* Backgrounds for specific sections */
+     nav, footer {
+         background-color: var(--dark-bg-top-bottom);
+     }
+     /* Hero, Key Points, etc. will use the body background --dark-bg-middle */
+
+
+    .section {
+      padding: var(--section-padding) var(--section-padding-h);
+      max-width: var(--max-content-width); /* Apply max width */
+      margin: auto; /* Center the content */
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      margin-bottom: var(--content-margin);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: var(--h1-size);
+      color: var(--accent2); /* Bright blue for main headline */
+    }
+
+    h2 {
+      font-size: var(--h2-size);
+      color: var(--accent1); /* Use accent color for section titles */
+    }
+
+    h3 {
+      font-size: var(--h3-size);
+      margin-bottom: calc(var(--content-margin) * 0.75);
+      color: white;
+    }
+
+    p {
+      margin-bottom: var(--content-margin);
+      color: #e0e0e0;
+      font-size: var(--text-size);
+    }
+
+    /* --- Navigation --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      max-width: 100vw;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      background: var(--dark-bg-top-bottom);
+      z-index: 9999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 64px;
+    }
+    body {
+      background: var(--dark-bg-middle);
+      color: white;
+      overflow-x: hidden;
+      line-height: 1.6;
+      font-size: var(--text-size);
+      scroll-behavior: smooth;
+      padding-top: 76px; /* Space for fixed nav */
+    }
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.75rem 1rem;
+        min-height: 56px;
+      }
+      body {
+        padding-top: 64px;
+      }
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
+      gap: 0.5rem;
+    }
+
+     nav .logo img {
+        height: 32px;
+        width: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+     }
+
+    nav .nav-links {
+      display: flex; /* Show by default on desktop */
+      align-items: center;
+    }
+
+    nav .nav-links a {
+      margin: 0 0.75rem;
+      color: #ddd;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      padding: 0.5rem 0.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--accent2);
+    }
+
+    .cta-button {
+      background: var(--button-color); /* Solid color */
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      color: var(--button-text-color); /* Dark text on bright button */
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex; /* Use flex for centering arrow */
+      align-items: center;
+      gap: 8px; /* Space between text and arrow */
+      transition: transform 0.3s ease; /* Removed box-shadow transition */
+      border: none; /* Remove default button border */
+      cursor: pointer;
+      font-size: 1.1rem; /* Default button font size */
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        /* Removed hover glow effect */
+    }
+
+    .menu-toggle {
+        display: none; /* Hide hamburger by default */
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        z-index: 1000; /* Above the sidebar */
+    }
+
+    /* --- Mobile Sidebar Navigation --- */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Hidden by default */
+        width: 250px;
+        height: 100%;
+        background: rgba(3, 3, 3, 0.95); /* Match nav/footer background */
+        backdrop-filter: blur(8px); /* Optional blur effect */
+        z-index: 990;
+        transition: right 0.3s ease;
+        padding-top: 6rem; /* Space for fixed elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar.open {
+        right: 0; /* Slide in */
+    }
+
+    .sidebar a {
+        color: #ddd;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+     .sidebar a:last-child {
+        border-bottom: none;
+     }
+     .sidebar .cta-button {
+         width: 80%;
+         margin-top: 2rem;
+         justify-content: center;
+         font-size: 1.1rem;
+         color: var(--button-text-color) !important; /* Ensure text color is correct */
+         background: var(--button-color);
+     }
+
+
+    /* --- Hero Section (Redesigned) --- */
+    .hero {
+      /* background-color set by body */
+      padding: var(--section-padding) var(--section-padding-h);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .hero-content-wrapper {
+        max-width: var(--max-content-width);
+        margin: auto;
+        display: flex; /* Use flexbox for desktop layout */
+        flex-direction: column; /* Stack columns on mobile */
+        align-items: center;
+        gap: 3rem; /* Space between left/right columns on desktop */
+    }
+
+    .hero-left, .hero-right {
+        flex: 1; /* Allow columns to grow */
+        width: 100%; /* Default width on mobile */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content in columns */
+        justify-content: center;
+    }
+
+    .hero .logo-container {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero .logo-container img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 5px;
+        border: 2px solid var(--golden-color);
+    }
+     .hero .logo-container .logo-text {
+         font-size: 1rem;
+         font-weight: 700;
+         color: var(--golden-color);
+         display: flex;
+         align-items: center;
+         gap: 5px;
+     }
+      .hero .logo-container .logo-text i {
+          color: var(--golden-color);
+          font-size: 1rem;
+      }
+
+
+    .hero h1 {
+        font-size: var(--h1-size);
+        margin-bottom: var(--content-margin);
+        color: var(--accent2);
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 1.2;
+        padding: 0 0.5rem;
+    }
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: calc(var(--h1-size) - 0.5rem);
+      }
+    }
+
+     .hero .telegram-handle {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ddd; /* White color for handle */
+        margin-bottom: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+     }
+
+     .hero .telegram-handle i {
+        color: #0088cc; /* Telegram icon color */
+     }
+
+    .hero .hero-image-container {
+        position: relative; /* Needed for absolute positioning of chart/coin */
+        width: 100%;
+        max-width: 500px; /* Limit max width on mobile to match image feel */
+        margin: auto; /* Center the container on mobile */
+        display: flex;
+        justify-content: center; /* Center images horizontally */
+        align-items: center; /* Center images vertically */
+    }
+
+    .hero .person-image {
+        width: 100%; /* Make person image fill container */
+        height: auto;
+        display: block; /* Remove extra space below image */
+        border-radius: 10px; /* Optional rounding */
+        z-index: 2; /* Ensure person is in front */
+    }
+
+    .hero .chart-image {
+        position: absolute;
+        left: 0; /* Position relative to container */
+        bottom: 5%; /* Adjust position */
+        width: 60%; /* Size relative to container */
+        height: auto;
+        z-index: 3; /* Above person image */
+        transform: translateX(-10%); /* Pull left slightly */
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); /* Add shadow */
+        opacity: 0.9; /* Slight transparency */
+    }
+     @media (max-width: 768px) {
+         .hero .chart-image {
+             left: -5%; /* Adjust position for smaller screens */
+             bottom: 10%;
+             width: 70%;
+              transform: translateX(0); /* Don't translate on mobile */
+         }
+     }
+
+
+    .hero .rupee-coin-image {
+        position: absolute;
+        right: 5%; /* Position relative to container */
+        top: 5%; /* Adjust position */
+        width: 15%; /* Size relative to container */
+        height: auto;
+        z-index: 4; /* Highest z-index */
+        animation: bounce 2s infinite; /* Apply bounce animation */
+        filter: drop-shadow(0 0 10px var(--golden-color)); /* Golden glow */
+    }
+    @media (max-width: 768px) {
+         .hero .rupee-coin-image {
+             right: 10%; /* Adjust position for smaller screens */
+             top: 15%;
+             width: 20%;
+         }
+     }
+
+
+     .hero .hero-cta {
+         margin-top: 3rem;
+         font-size: 1.2rem; /* Larger button */
+     }
+
+
+    /* --- Flip Text (Simplified) --- */
+    .flip-text-container {
+        text-align: center;
+        margin-top: -2rem; /* Pull up slightly */
+        margin-bottom: 4rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        z-index: 2;
+        position: relative;
+    }
+
+    .flip-text-container span {
+        display: block;
+        margin-bottom: 0.5rem;
+        background: var(--golden-color); /* Solid golden color */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+
+
+    /* --- Key Points Section --- */
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .key-point {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+     .key-point i {
+        color: var(--accent1); /* Use accent1 for icons */
+        margin-right: 8px;
+        font-size: 1.4rem;
+     }
+
+     .text-center {
+        text-align: center;
+     }
+
+
+    /* --- Profit Screenshots Carousel --- */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 0;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      transition: scroll-left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      gap: 1.5rem;
+      padding-bottom: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent1) transparent; /* Use accent1 for scrollbar */
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background-color: var(--accent1); /* Use accent1 for scrollbar */
+      border-radius: 10px;
+      border: 2px solid var(--dark-bg-middle);
+    }
+
+    .carousel img {
+      flex-shrink: 0;
+      width: 80%; /* Make images larger on mobile */
+      max-width: 380px; /* Max width for desktop */
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      scroll-snap-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+     .carousel p { /* Style for text below carousel */
+        text-align: center;
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-top: 1rem;
+     }
+
+
+    /* --- Reviews Section --- */
+    .reviews-container {
+        position: relative;
+        padding: 1rem 0;
+    }
+
+    .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .review {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .review .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .review .user-info img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        margin-right: 1rem;
+        border: 2px solid var(--accent1); /* Use accent1 for review image border */
+    }
+
+     .review .user-info strong {
+        font-size: 1.1rem;
+     }
+
+    .review p {
+      font-style: italic;
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 0;
+       flex-grow: 1;
+    }
+
+    .view-more-reviews {
+        display: block;
+        margin: 2rem auto 0;
+        text-align: center;
+    }
+
+     /* Slider styles for 'all reviews' */
+     .reviews-slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent1) transparent; /* Use accent1 for scrollbar */
+     }
+     .reviews-slider::-webkit-scrollbar { height: 8px; }
+     .reviews-slider::-webkit-scrollbar-track { background: transparent; }
+     .reviews-slider::-webkit-scrollbar-thumb {
+        background-color: var(--accent1); /* Use accent1 for scrollbar */
+        border-radius: 10px;
+        border: 2px solid var(--dark-bg-middle);
+     }
+
+     .reviews-slider .review {
+        flex-shrink: 0;
+        width: 85%;
+        max-width: 380px;
+        scroll-snap-align: center;
+     }
+
+
+    /* --- Stats/Stars Section --- */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         flex-basis: 150px;
+    }
+
+    .stat-item i {
+        font-size: 3.5rem;
+         /* Apply golden color directly */
+        color: var(--golden-color);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 15px rgba(255, 204, 0, 0.8); /* Softer, more attractive glow */
+    }
+
+    /* --- FAQ Section --- */
+    .faq-item {
+      margin-bottom: 1rem;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-item strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent1);
+    }
+
+    .faq-item p {
+        font-size: 1rem;
+        color: #bbb;
+        margin-bottom: 0;
+    }
+
+
+    /* --- Footer --- */
+    footer {
+      /* background-color set by body */
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer .footer-links {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+        margin: 0.5rem 0.75rem;
+        color: #ddd;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+
+    footer .footer-links a:hover {
+        color: var(--accent2);
+    }
+
+    footer .cta-button {
+        margin-bottom: 1.5rem;
+    }
+
+
+    footer p {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0;
+    }
+     footer p:last-child {
+         margin-top: 0.5rem;
+         font-size: 0.75rem;
+         color: #777;
+     }
+
+
+    /* --- Responsive Adjustments --- */
+    @media (min-width: 769px) { /* Desktop/Tablet layout */
+        .hero-content-wrapper {
+            flex-direction: row; /* Side-by-side on desktop */
+            justify-content: space-around;
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .hero-left, .hero-right {
+             width: auto; /* Allow flex to determine width */
+             max-width: 500px; /* Prevent columns from getting too wide */
+        }
+
+         .hero-left {
+             align-items: flex-start; /* Align text/items to the left */
+             text-align: left; /* Align text to the left */
+         }
+
+         .hero-left h1,
+         .hero-left .telegram-handle {
+             text-align: left; /* Override center alignment for these */
+             justify-content: flex-start;
+         }
+
+        .hero-image-container {
+            width: 100%; /* Full width within its column */
+            max-width: none; /* Remove mobile max-width */
+            /* Adjust positioning for desktop */
+            position: relative; /* Ensure children are positioned relative to this */
+            padding-bottom: 60%; /* Create space based on aspect ratio for images */
+            height: 0;
+        }
+         .hero-image-container .person-image,
+         .hero-image-container .chart-image,
+         .hero-image-container .rupee-coin-image {
+             position: absolute;
+         }
+
+         .hero .person-image {
+             right: 0; /* Position person on the right of the container */
+             bottom: 0;
+             width: 80%; /* Size relative to container */
+             max-width: none;
+             height: auto;
+         }
+
+         .hero .chart-image {
+             left: 0;
+             bottom: 15%; /* Adjust vertical position */
+             width: 60%;
+             transform: none; /* Remove mobile transform */
+         }
+
+         .hero .rupee-coin-image {
+             left: 45%; /* Position relative to chart/person */
+             top: 5%;
+             width: 10%;
+             animation: bounce 2s infinite; /* Apply bounce animation */
+         }
+
+         .hero .hero-cta {
+             align-self: flex-start; /* Align button to the left in the left column */
+         }
+          .hero .stats-list {
+              align-self: flex-start; /* Align list to the left */
+          }
+
+    }
+
+
+    @media (max-width: 768px) {
+        h1 { font-size: calc(var(--h1-size) - 0.5rem); }
+        h2 { font-size: calc(var(--h2-size) - 0.4rem); }
+        h3 { font-size: calc(var(--h3-size) - 0.2rem); }
+        p { font-size: var(--text-small); }
+        .section { padding: var(--section-padding-mobile) var(--section-padding-h-mobile); }
+        .key-points { grid-template-columns: 1fr; }
+        .key-point { font-size: var(--text-small); }
+        .reviews-grid { grid-template-columns: 1fr; }
+        .counter-value { font-size: 1.8rem; }
+        .counter-label { font-size: var(--text-xs); }
+        .counter-icon { font-size: 1.5rem; }
+        
+        /* Mobile navigation fixes */
+        nav { padding: 0.8rem 1rem; }
+        nav .logo img { height: 30px; }
+        nav .nav-links { display: none; } /* Hide nav links on mobile */
+        .menu-toggle { display: block; } /* Show hamburger menu */
+        nav .nav-cta { display: none; } /* Hide nav CTA on mobile */
+        
+        /* Mobile hero section fixes */
+        .hero { padding: 2.5rem 1rem; }
+        .hero h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .hero .telegram-handle { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        
+        .carousel img {
+            width: 85%;
+        }
+        .reviews-slider .review {
+            width: 90%;
+        }
+
+
+        .stat-item {
+            font-size: 1.1rem;
+            flex-basis: auto;
+            min-width: 120px;
+        }
+         .stat-item i {
+            font-size: 3rem;
+         }
+
+        .review .user-info img {
+            width: 50px;
+            height: 50px;
+        }
+         .review .user-info strong { font-size: 1rem; }
+         .review p { font-size: 0.95rem; }
+
+
+        footer .footer-links a {
+            margin: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+        }
+         footer .cta-button {
+             font-size: 1rem;
+             padding: 0.6rem 1.2rem;
+         }
+         footer p { font-size: 0.8rem; }
+         footer p:last-child { font-size: 0.7rem; }
+
+    }
+
+     @media (max-width: 480px) {
+         h1 { font-size: 2rem; }
+         h2 { font-size: 1.6rem; }
+         .section { padding: 2rem 0.8rem; }
+          nav { padding: 0.6rem 0.8rem; }
+
+         .hero { padding: 2.5rem 0.8rem; } /* Adjust padding for smallest screens */
+          .hero h1 { font-size: 2.2rem; margin-bottom: 0.8rem;}
+          .hero .telegram-handle { font-size: 1.1rem; margin-bottom: 1.5rem;}
+           .hero > p { font-size: 1rem; margin-bottom: 1.5rem;}
+
+          .hero .logo-container img {
+              width: 60px; /* Adjust logo size on smallest screens */
+              height: 60px;
+          }
+           .hero .logo-container .logo-text { font-size: 1.1rem; }
+
+          .hero .hero-cta {
+              margin-top: 2rem;
+              font-size: 1.1rem;
+              padding: 0.6rem 1.2rem;
+          }
+
+         .hero .stats-list { font-size: 0.9rem; margin-top: 1rem; margin-bottom: 2rem; }
+         .hero .stats-list li::before { font-size: 1rem; }
+
+
+         .flip-text-container {
+             font-size: 1.3rem;
+             margin-top: -1rem;
+             margin-bottom: 2rem;
+         }
+          .flip-text-container span { margin-bottom: 0.3rem;}
+
+
+         .key-points {
+             grid-template-columns: 1fr;
+             gap: 0.8rem;
+         }
+          .key-point { font-size: 0.95rem; padding: 0.8rem; }
+
+
+         .carousel img { width: 90%; }
+         .reviews-slider .review { width: 95%; }
+
+         .stat-item { min-width: 100px; }
+          .stat-item i { font-size: 2.5rem; }
+
+         .review .user-info img { width: 45px; height: 45px; }
+          .review .user-info strong { font-size: 0.95rem; }
+          .review p { font-size: 0.9rem; }
+
+          .faq-item { padding: 1rem; }
+           .faq-item strong { font-size: 1rem; }
+           .faq-item p { font-size: 0.9rem; }
+
+          footer { padding: 2rem 0.8rem; }
+           footer .footer-links a { margin: 0.3rem 0.5rem; font-size: 0.8rem; }
+           footer .cta-button { font-size: 0.9rem; padding: 0.5rem 1rem; }
+           footer p { font-size: 0.75rem; }
+            footer p:last-child { font-size: 0.65rem; }
+
+     }
+
+
+    /* State for when sidebar is open */
+    body.sidebar-open {
+        overflow: hidden; /* Prevent scrolling when sidebar is open */
+    }
+
+
+    /* Counter Section Styles (Separator Style) */
+    .counter-section {
+      background: none !important;
+      box-shadow: none !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+    .counter-grid.separator-style {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0;
+      width: 100%;
+      background: none;
+    }
+    .counter-item {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 0.5rem 1rem 0.5rem;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .counter-icon {
+      font-size: 2.7rem;
+      color: var(--golden-color);
+      margin-bottom: 0.7rem;
+      animation: bounce 1.5s infinite;
+    }
+    .counter-value {
+      font-size: 2.7rem;
+      font-weight: 800;
+      color: var(--accent1);
+      margin-bottom: 0.2rem;
+      letter-spacing: 1px;
+      min-height: 2.8rem;
+      line-height: 1.1;
+      font-family: 'Poppins',sans-serif;
+    }
+    .counter-label {
+      font-size: 1.15rem;
+      color: #fff;
+      opacity: 0.92;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+    .counter-separator {
+      width: 2px;
+      background: linear-gradient(to bottom, #00f2fa 0%, #fff 100%);
+      margin: 0 0.5rem;
+      border-radius: 2px;
+      opacity: 0.25;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .counter-grid.separator-style {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .counter-item {
+        padding: 1.2rem 0 1.2rem 0;
+      }
+      .counter-value {
+        font-size: 2.3rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .counter-icon {
+        font-size: 2.1rem;
+      }
+      .counter-separator {
+        width: 80%;
+        height: 2px;
+        margin: 0.5rem auto;
+        background: linear-gradient(to right, #00f2fa 0%, #fff 100%);
+        opacity: 0.25;
+      }
+    }
+    @media (max-width: 480px) {
+      .counter-section {
+        padding: 0.7rem 0.1rem 0.7rem 0.1rem;
+      }
+      .counter-value {
+        font-size: 2.1rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .counter-label {
+        font-size: 1.02rem;
+      }
+      .counter-icon {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <!-- Mobile Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="#hero">Home</a>
+        <a href="#keypoints">Why Us</a>
+        <a href="#profits">Profits</a>
+        <a href="#reviews">Reviews</a>
+        <!-- CTA Button in Sidebar -->
+        <a href="https://t.me/bankniftysure23" class="cta-button">Join Telegram →</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <!-- Bank Nifty Bull Logo using the provided URL -->
+            <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="Bank Nifty Options Logo">
+            <!-- Removed text logo as requested -->
+            <span class="logo-text">BankniftyOnly</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#keypoints">Why Us</a>
+            <a href="#profits">Profits</a>
+            <a href="#reviews">Reviews</a>
+        </div>
+        <a href="https://t.me/bankniftysure23" class="cta-button nav-cta">Join Telegram →</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content-wrapper">
+            <div class="hero-left">
+                <div class="logo-container">
+                    <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="Bank Nifty Logo">
+                    <span class="logo-text">BankniftyOnly</span>
+                </div>
+
+                <h1>JOIN OUR FREE BANK NIFTY TRADING COMMUNITY</h1>
+
+                <div class="telegram-handle">
+                    <i class="fab fa-telegram-plane"></i> @Bankniftysure23 <!-- Updated Telegram Handle -->
+                </div>
+
+                <div class="cta-btn-row hero-btn-row" style="display: flex; align-items: center; justify-content: center; gap: 0.2rem; flex-wrap: wrap;">
+                  <a href="https://t.me/bankniftysure23" class="cta-button hero-cta" style="min-width: 210px;">Join The Free Group Now <i class="fas fa-arrow-right"></i></a>
+                  <a href="https://wa.me/1234567890" class="cta-button whatsapp-cta" target="_blank" style="background: #25D366; color: #fff; min-width: 210px;"><i class="fab fa-whatsapp" style="margin-right: 6px;"></i>Join on WhatsApp Group</a>
+                </div>
+                <style>
+                  .hero-btn-row {
+                    flex-direction: row;
+                  }
+                  @media (max-width: 600px) {
+                    .hero-btn-row {
+                      flex-direction: column;
+                      gap: 0.3rem;
+                    }
+                    .hero-btn-row .or-text {
+                      margin: 0.1rem 0;
+                    }
+                  }
+                </style>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Flip Text Section (Simplified) -->
+    <div class="flip-text-container">
+        <span>Profit Growth Surpassing 75%</span> <!-- Simplified text, needs JS for flip animation -->
+        <span>10,000+ Satisfied Members Earning Daily</span> <!-- Simplified text -->
+    </div>
+
+    <!-- Animated Counter Section -->
+    <section class="section counter-section" style="background:none;box-shadow:none;padding-bottom:0;">
+  <div class="counter-grid separator-style">
+    <div class="counter-item">
+      <div class="counter-icon"><i class="fas fa-users"></i></div>
+      <h3 class="counter-value" id="counter-members" style="font-weight: bold;">0</h3>
+      <div class="counter-label">Members</div>
+    </div>
+    <div class="counter-separator"></div>
+    <div class="counter-item">
+      <div class="counter-icon"><i class="fas fa-chart-line"></i></div>
+      <h3 class="counter-value" id="counter-profit" style="font-weight: bold;">0</h3>
+      <div class="counter-label">Average Profit</div>
+    </div>
+    <div class="counter-separator"></div>
+    <div class="counter-item">
+      <div class="counter-icon"><i class="fas fa-bolt"></i></div>
+      <h3 class="counter-value" id="counter-trades" style="font-weight: bold;">0</h3>
+      <div class="counter-label">Daily Trades Signal</div>
+    </div>
+  </div>
+</section>
+
+    <!-- Key Points Section -->
+    <section class="section" id="keypoints">
+        <h2>Why Choose Our Signals?</h2>
+        <div class="key-points">
+            <div class="key-point"><i class="fas fa-check-circle"></i> Proven High-Accuracy Strategy</div>
+            <div class="key-point"><i class="fas fa-chart-line"></i> Precise Daily Entry & Exit Points</div>
+            <div class="key-point"><i class="fas fa-users"></i> Trusted by Over 10,000 Traders</div>
+            <div class="key-point"><i class="fas fa-shield-alt"></i> Strict Risk Management Applied</div>
+             <div class="key-point"><i class="fas fa-rupee-sign"></i> Focus on Consistent Capital Growth</div>
+             <div class="key-point"><i class="fas fa-clock"></i> Real-time Signal Delivery</div>
+        </div>
+         <div class="text-center" style="margin-top: 3rem;">
+             <a href="https://t.me/bankniftysure23" class="cta-button">Ready to Profit? Join Now <i class="fas fa-arrow-right"></i></a>
+         </div>
+    </section>
+
+    <!-- Embedded Reel Section -->
+    <section class="section" id="reel">
+      <h2>Watch Our Latest Reel</h2>
+      <div style="display: flex; justify-content: center;">
+        <div style="width: 100%; max-width: 400px; aspect-ratio: 9/16; background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
+          <iframe src="https://www.instagram.com/reel/C4QJwYdJ9K2/embed" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profit Screenshots Carousel -->
+    <section class="section" id="profits">
+        <h2>Live Profit Screenshots from Our Members</h2>
+        <div class="carousel-container">
+             <div class="carousel">
+                <!-- Use the provided generic Bank Nifty image for placeholders -->
+                <img src="https://i.postimg.cc/ZnDMzPFb/Bank-Nifty.jpg" alt="Profit Screenshot 1">
+                <img src="https://i.postimg.cc/ZnDMzPFb/Bank-Nifty.jpg" alt="Profit Screenshot 2">
+                <!-- ... (rest of images) ... -->
+            </div>
+             <p>Swipe or scroll to see more real profit examples!</p>
+        </div>
+         <div class="text-center" style="margin-top: 3rem;">
+             <a href="https://t.me/bankniftysure23" class="cta-button">See Results Yourself - Join <i class="fas fa-arrow-right"></i></a>
+         </div>
+    </section>
+
+
+    <!-- Removed Chart Section -->
+
+    <!-- Reviews Section -->
+    <section class="section" id="reviews">
+        <h2>What Our Members Are Saying</h2>
+        <div class="reviews-container">
+            <!-- Initially displayed reviews (Grid) -->
+            <div class="reviews-grid" id="initial-reviews">
+                <!-- Review 1 -->
+                <div class="review">
+                    <div class="user-info">
+                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 1"> <!-- Using logo image for placeholder -->
+                         <strong>Rahul S.</strong>
+                    </div>
+                    <p>“Absolutely game-changing! The signals are spot-on and the community is super helpful. My trading account has never looked better.”</p>
+                </div>
+                 <!-- Review 2 -->
+                 <div class="review">
+                    <div class="user-info">
+                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 2"> <!-- Using logo image for placeholder -->
+                         <strong>Priya V.</strong>
+                    </div>
+                    <p>“Joining this group was the best decision for my options trading. The accuracy is impressive, and the daily guidance is invaluable.”</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="review">
+                    <div class="user-info">
+                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 3"> <!-- Using logo image for placeholder -->
+                         <strong>Amit K.</strong>
+                    </div>
+                    <p>“Finally, a signals group that delivers! Risk management is key, and they emphasize it perfectly. Highly recommended for serious traders.”</p>
+                </div>
+                 <!-- Review 4 -->
+                 <div class="review">
+                    <div class="user-info">
+                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 4"> <!-- Using logo image for placeholder -->
+                         <strong>Sneha R.</strong>
+                    </div>
+                    <p>“From struggling to profitable in weeks. The signals are clear, easy to follow, and incredibly accurate. Thank you!”</p>
+                </div>
+                <!-- Review 5 -->
+                <div class="review">
+                    <div class="user-info">
+                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 5"> <!-- Using logo image for placeholder -->
+                         <strong>Vikram J.</strong>
+                    </div>
+                    <p>“Transparency and results. That’s what you get here. The profit screenshots shared in the group are real and motivating. Great support too.”</p>
+                </div>
+            </div>
+
+            <!-- Button to view more reviews -->
+            <div class="text-center">
+                <button id="view-more-reviews" class="cta-button view-more-reviews">View All 25+ Reviews <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+             <!-- All Reviews (Slider - initially hidden) -->
+            <div class="reviews-slider" id="all-reviews" style="display: none;">
+                <!-- Repeat the review structure 25 times here. (Using logo image for placeholders) -->
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 1"> <strong>Rahul S.</strong> </div> <p>“Review text 1.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 2"> <strong>Priya V.</strong> </div> <p>“Review text 2.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 3"> <strong>Amit K.</strong> </div> <p>“Review text 3.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 4"> <strong>Sneha R.</strong> </div> <p>“Review text 4.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 5"> <strong>Vikram J.</strong> </div> <p>“Review text 5.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 6"> <strong>Deepak M.</strong> </div> <p>“Review text 6.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 7"> <strong>Anjali P.</strong> </div> <p>“Review text 7.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 8"> <strong>Rajesh G.</strong> </div> <p>“Review text 8.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 9"> <strong>Meera A.</strong> </div> <p>“Review text 9.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 10"> <strong>Sanjay B.</strong> </div> <p>“Review text 10.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 11"> <strong>Kavita N.</strong> </div> <p>“Review text 11.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 12"> <strong>Prakash D.</strong> </div> <p>“Review text 12.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 13"> <strong>Divya S.</strong> </div> <p>“Review text 13.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 14"> <strong>Arjun L.</strong> </div> <p>“Review text 14.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 15"> <strong>Swati R.</strong> </div> <p>“Review text 15.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 16"> <strong>Ajay P.</strong> </div> <p>“Review text 16.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 17"> <strong>Nisha K.</strong> </div> <p>“Review text 17.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 18"> <strong>Vivek G.</strong> </div> <p>“Review text 18.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 19"> <strong>Pooja B.</strong> </div> <p>“Review text 19.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 20"> <strong>Siddharth C.</strong> </div> <p>“Review text 20.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 21"> <strong>Ritu D.</strong> </div> <p>“Review text 21.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 22"> <strong>Gaurav E.</strong> </div> <p>“Review text 22.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 23"> <strong>Neha F.</strong> </div> <p>“Review text 23.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 24"> <strong>Karan H.</strong> </div> <p>“Review text 24.”</p></div>
+                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 25"> <strong>Shruti I.</strong> </div> <p>“Review text 25.”</p></div>
+                <!-- End of 25 review examples -->
+            </div>
+
+        </div>
+         <div class="text-center" style="margin-top: 3rem;">
+             <a href="https://t.me/bankniftysure23" class="cta-button">Join 10,000+ Happy Traders <i class="fas fa-arrow-right"></i></a>
+         </div>
+    </section>
+
+
+    <!-- FAQ Section Removed -->
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://t.me/bankniftysure23" class="cta-button">Join Free Signals Group <i class="fas fa-arrow-right"></i></a>
+        <div class="footer-links">
+             <a href="#hero">Home</a>
+            <a href="#keypoints">Why Us</a>
+            <a href="#profits">Profits</a>
+            <a href="#reviews">Reviews</a>
+        </div>
+        <p>© 2024 Bank Nifty Options Signals. All rights reserved.</p>
+        <p>Disclaimer: Options trading involves significant risk. Consult with a financial advisor before trading.</p>
+    </footer>
+
+    <script>
+        // --- Hamburger Menu Toggle ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const body = document.body;
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            body.classList.toggle('sidebar-open'); // Add class to body to prevent scroll
+        });
+
+        // Close sidebar when a link is clicked
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Only close sidebar if the click is on a link that triggers navigation
+                if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
+                   sidebar.classList.remove('open');
+                   body.classList.remove('sidebar-open');
+                }
+            });
+        });
+
+
+        // --- Reviews Show More Logic ---
+        const viewMoreBtn = document.getElementById('view-more-reviews');
+        const initialReviews = document.getElementById('initial-reviews');
+        const allReviewsSlider = document.getElementById('all-reviews');
+
+        if (viewMoreBtn && initialReviews && allReviewsSlider) {
+             viewMoreBtn.addEventListener('click', () => {
+                 initialReviews.style.display = 'none'; // Hide the initial grid
+                 allReviewsSlider.style.display = 'flex'; // Show the slider (flex enables scrolling)
+                 viewMoreBtn.style.display = 'none'; // Hide the "View More" button
+             });
+        }
+
+
+        // --- Smooth Scrolling for Navigation Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Handle closing sidebar if open (already done by sidebar link handler, but good for safety)
+                 if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    body.classList.remove('sidebar-open');
+                 }
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // --- Placeholder for Flip Text Animation ---
+        // Implementing a true 'flip increasing text' effect requires a more complex
+        // JavaScript library or custom animation code than is practical for this example.
+        // The text elements are in place, but the animation is not implemented here.
+        // You would typically use a library like Odometer.js or write custom JS/CSS
+        // animations to achieve that specific visual effect.
+
+         // --- Hide/Show Hero Images Based on Screen Size (Simple JS check) ---
+         // CSS media queries handle display property, but if complex logic is needed:
+         // window.addEventListener('resize', () => { ... check window.innerWidth and set display ... });
+         // Initial check:
+         function checkHeroImagesDisplay() {
+             const desktopImages = document.querySelector('.hero-image-container.desktop-only');
+             const mobileImages = document.querySelector('.hero-image-container.mobile-only');
+             if (window.innerWidth > 768) { // Assuming 768px is the breakpoint for desktop layout
+                 if(desktopImages) desktopImages.style.display = 'block';
+                 if(mobileImages) mobileImages.style.display = 'none';
+             } else {
+                 if(desktopImages) desktopImages.style.display = 'none';
+                 if(mobileImages) mobileImages.style.display = 'block';
+             }
+         }
+         checkHeroImagesDisplay();
+         window.addEventListener('resize', checkHeroImagesDisplay);
+
+
+    // --- Animated Counter Logic ---
+    function animateCounter(id, start, end, duration, suffix = "") {
+      const el = document.getElementById(id);
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        el.textContent = value.toLocaleString() + suffix;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = end.toLocaleString() + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+    // Animate each counter when DOM is loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      animateCounter("counter-members", 1, 10000, 1800, "+");
+      animateCounter("counter-profit", 100, 50000, 1800, "+");
+      animateCounter("counter-trades", 1, 10, 1200, "+");
+    });
+    </script>
+<!-- Removed duplicate WhatsApp button -->
+
+<!-- Floating WhatsApp and Join Channel Button (clean, non-overlapping) -->
+<style>
+  .floating-whatsapp {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 11000;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    cursor: pointer;
+    border: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    color: #fff;
+    text-decoration: none;
+    background: #25D366;
+  }
+  .floating-whatsapp:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 600px) {
+    .floating-whatsapp {
+      right: 16px;
+      bottom: 16px;
+      width: 55px; 
+      height: 55px; 
+      font-size: 2rem;
+    }
+  }
+</style>
+<a href="https://wa.me/1234567890" target="_blank" class="floating-whatsapp" aria-label="Join on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</body>
+</html>
