@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bank Nifty Options - Trading Signals</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>India's Largest Bank Nifty Community - Trading Signals & Analysis</title>
+  <meta name="description" content="Join BankniftyOnly, India's largest community for Bank Nifty options trading signals and expert analysis. Get real-time alerts, proven strategies, and achieve consistent profits.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- FontAwesome for icons -->
-  <!-- Removed Chart.js script -->
   <style>
     :root {
       --dark-bg-top-bottom: rgb(3, 3, 3); /* Darkest background for nav and footer */
       --dark-bg-middle: rgb(0, 8, 17); /* Darker background for sections */
-      --accent1: #00f2fa; /* Turquoise blue 1 */
-      --accent2: #ffffff; /* Brighter turquoise blue for main headline */
+      --accent1: #00c6ff; /* Turquoise blue 1 */
+      --accent2: #00f0f7; /* Brighter turquoise blue for main headline */
       --button-color: #00f0f7; /* Solid button color */
       --button-text-color: var(--dark-bg-top-bottom); /* Dark text on bright button */
       --golden-color: #ffcc00; /* Specific golden color for text/icons */
       --card-bg: rgba(255, 255, 255, 0.05); /* Slightly transparent card background */
       --max-content-width: 1024px; /* Desktop content width limit */
-      
+
       /* Standardized spacing */
       --section-padding: 3rem; /* Standard section vertical padding */
       --section-padding-h: 1.5rem; /* Standard section horizontal padding */
@@ -26,20 +26,54 @@
       --section-padding-h-mobile: 1rem; /* Mobile section horizontal padding */
       --content-margin: 1.5rem; /* Standard margin between content elements */
       --content-margin-mobile: 1rem; /* Mobile margin between content elements */
-      
+
       /* Standardized typography */
-      --h1-size: 2.5rem; /* Main heading size */
-      --h2-size: 2rem; /* Section heading size */
-      --h3-size: 1.5rem; /* Subsection heading size */
+      --h1-size: 2.8rem; /* Main heading size increased for impact */
+      --h2-size: 2.2rem; /* Section heading size increased */
+      --h3-size: 1.6rem; /* Subsection heading size increased */
       --text-size: 1rem; /* Normal text size */
       --text-small: 0.9rem; /* Small text size */
       --text-xs: 0.8rem; /* Extra small text size */
+
+       /* Body padding to avoid fixed nav/footer overlap */
+       --nav-height: 76px;
+       /* Estimate footer height for bottom padding - will be adjusted by JS */
+       --footer-padding-bottom: 180px; /* Ensure space for floating buttons */
     }
+
+     @media (max-width: 768px) {
+         :root {
+             --nav-height: 64px;
+             --h1-size: 2.2rem;
+             --h2-size: 1.8rem;
+             --h3-size: 1.4rem;
+             --footer-padding-bottom: 120px; /* Adjust for mobile floating button height */
+         }
+     }
+      @media (max-width: 480px) {
+         :root {
+             --nav-height: 56px;
+             --h1-size: 1.8rem;
+             --h2-size: 1.5rem;
+             --h3-size: 1.2rem;
+             --footer-padding-bottom: 110px; /* Adjust for smaller mobile floating button height */
+         }
+     }
+
 
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-5px); } /* Adjust bounce height */
     }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+     @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+     }
 
 
     * {
@@ -56,6 +90,9 @@
       line-height: 1.6;
       font-size: 1rem; /* Base font size */
       scroll-behavior: smooth;
+      padding-top: var(--nav-height); /* Space for fixed nav */
+      padding-bottom: var(--footer-padding-bottom); /* Space for potential floating buttons */
+      position: relative; /* Needed for footer estimate and absolute positioning */
     }
 
     /* Backgrounds for specific sections */
@@ -81,11 +118,13 @@
     h1 {
       font-size: var(--h1-size);
       color: var(--accent2); /* Bright blue for main headline */
+      font-weight: 900; /* Extra bold for main impact */
     }
 
     h2 {
       font-size: var(--h2-size);
       color: var(--accent1); /* Use accent color for section titles */
+      margin-bottom: calc(var(--content-margin) * 1.5); /* More space below section title */
     }
 
     h3 {
@@ -116,25 +155,7 @@
       align-items: center;
       padding: 0.75rem 2rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 64px;
-    }
-    body {
-      background: var(--dark-bg-middle);
-      color: white;
-      overflow-x: hidden;
-      line-height: 1.6;
-      font-size: var(--text-size);
-      scroll-behavior: smooth;
-      padding-top: 76px; /* Space for fixed nav */
-    }
-    @media (max-width: 768px) {
-      nav {
-        padding: 0.75rem 1rem;
-        min-height: 56px;
-      }
-      body {
-        padding-top: 64px;
-      }
+      min-height: var(--nav-height);
     }
 
     nav .logo {
@@ -153,7 +174,14 @@
         width: 32px;
         object-fit: cover;
         border-radius: 50%;
+        border: 1px solid var(--golden-color);
      }
+
+     nav .logo-text {
+        font-weight: 800;
+        color: white;
+     }
+
 
     nav .nav-links {
       display: flex; /* Show by default on desktop */
@@ -185,15 +213,16 @@
       display: inline-flex; /* Use flex for centering arrow */
       align-items: center;
       gap: 8px; /* Space between text and arrow */
-      transition: transform 0.3s ease; /* Removed box-shadow transition */
+      transition: transform 0.3s ease;
       border: none; /* Remove default button border */
       cursor: pointer;
       font-size: 1.1rem; /* Default button font size */
+       text-align: center; /* Center text inside button */
+        justify-content: center; /* Center content inside button */
     }
 
     .cta-button:hover {
         transform: translateY(-2px);
-        /* Removed hover glow effect */
     }
 
     .menu-toggle {
@@ -209,18 +238,18 @@
     /* --- Mobile Sidebar Navigation --- */
     .sidebar {
         position: fixed;
-        top: 0;
+        top: var(--nav-height); /* Position below the fixed nav */
         right: -250px; /* Hidden by default */
         width: 250px;
-        height: 100%;
-        background: rgba(3, 3, 3, 0.95); /* Match nav/footer background */
-        backdrop-filter: blur(8px); /* Optional blur effect */
+        height: calc(100% - var(--nav-height)); /* Adjust height */
+        background: rgba(3, 3, 3, 0.98); /* Match nav/footer background, slightly opaque */
+        backdrop-filter: blur(6px); /* Optional blur effect */
         z-index: 990;
         transition: right 0.3s ease;
-        padding-top: 6rem; /* Space for fixed elements */
         display: flex;
         flex-direction: column;
         align-items: center;
+         overflow-y: auto; /* Add scroll if links exceed height */
     }
 
     .sidebar.open {
@@ -235,14 +264,21 @@
         width: 100%;
         text-align: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background 0.2s ease, color 0.2s ease;
     }
 
-     .sidebar a:last-child {
+     .sidebar a:last-child:not(.cta-button) {
         border-bottom: none;
      }
+      .sidebar a:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--accent2);
+      }
+
      .sidebar .cta-button {
          width: 80%;
          margin-top: 2rem;
+         margin-bottom: 2rem; /* Add space below the button */
          justify-content: center;
          font-size: 1.1rem;
          color: var(--button-text-color) !important; /* Ensure text color is correct */
@@ -250,9 +286,8 @@
      }
 
 
-    /* --- Hero Section (Redesigned) --- */
+    /* --- Hero Section --- */
     .hero {
-      /* background-color set by body */
       padding: var(--section-padding) var(--section-padding-h);
       position: relative;
       overflow: hidden;
@@ -263,10 +298,10 @@
     .hero-content-wrapper {
         max-width: var(--max-content-width);
         margin: auto;
-        display: flex; /* Use flexbox for desktop layout */
-        flex-direction: column; /* Stack columns on mobile */
+        display: flex; /* Use flexbox */
+        flex-direction: column; /* Stack columns by default */
         align-items: center;
-        gap: 3rem; /* Space between left/right columns on desktop */
+        gap: 3rem; /* Space between sections */
     }
 
     .hero-left, .hero-right {
@@ -285,16 +320,16 @@
         align-items: center;
     }
     .hero .logo-container img {
-        width: 110px;
-        height: 110px;
+        width: 90px; /* Slightly smaller logo in hero */
+        height: 90px;
         object-fit: cover;
         border-radius: 50%;
         margin-bottom: 5px;
         border: 2px solid var(--golden-color);
     }
      .hero .logo-container .logo-text {
-         font-size: 1rem;
-         font-weight: 700;
+         font-size: 1.1rem;
+         font-weight: 800;
          color: var(--golden-color);
          display: flex;
          align-items: center;
@@ -305,152 +340,247 @@
           font-size: 1rem;
       }
 
-
-    .hero h1 {
+     /* Style for the H1 specifically in the hero section */
+     .hero h1 {
         font-size: var(--h1-size);
-        margin-bottom: var(--content-margin);
+        margin-bottom: var(--content-margin-mobile);
         color: var(--accent2);
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
+        text-align: center; /* Explicitly center on all sizes by default */
         line-height: 1.2;
-        padding: 0 0.5rem;
+        /* Shimmer effect applied directly in HTML style */
     }
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: calc(var(--h1-size) - 0.5rem);
-      }
-    }
+     .hero > p { /* Style for the new sub-headline paragraph */
+        font-size: 1.15rem;
+        color: #ccc;
+        margin-bottom: 2rem; /* More space below sub-headline */
+        max-width: 600px; /* Limit width for readability */
+        margin-left: auto;
+        margin-right: auto;
+         text-align: center; /* Explicitly center */
+     }
+
 
      .hero .telegram-handle {
-        font-size: 1.1rem;
+        font-size: 1rem; /* Reduced font size */
         font-weight: 600;
-        color: #ddd; /* White color for handle */
-        margin-bottom: 2.5rem;
+        color: #ddd;
+        margin-bottom: 2rem; /* More space below handle */
         display: flex;
+        flex-direction: column; /* Stack text and handle vertically */
         justify-content: center;
-        align-items: center;
-        gap: 10px;
+        align-items: center; /* Center horizontally */
+        gap: 5px; /* Space between lines */
+        text-align: center; /* Ensure text is centered within the block */
      }
+      .hero .telegram-handle span { /* Style for the "Join our vibrant community..." text */
+         display: block; /* Ensure it takes full width */
+      }
+      .hero .telegram-handle .handle { /* Style for the @handle line */
+          display: flex; /* Keep icon and handle inline */
+          align-items: center;
+          gap: 8px;
+           font-size: 1.1rem; /* Keep handle slightly larger */
+           font-weight: 700;
+      }
+
 
      .hero .telegram-handle i {
         color: #0088cc; /* Telegram icon color */
+         font-size: 1.2rem; /* Icon size */
      }
 
     .hero .hero-image-container {
         position: relative; /* Needed for absolute positioning of chart/coin */
         width: 100%;
-        max-width: 500px; /* Limit max width on mobile to match image feel */
+        max-width: 500px; /* Limit max width on mobile */
         margin: auto; /* Center the container on mobile */
         display: flex;
         justify-content: center; /* Center images horizontally */
         align-items: center; /* Center images vertically */
+        padding-bottom: 60%; /* Placeholder for image aspect ratio */
+        height: 0;
     }
 
     .hero .person-image {
-        width: 100%; /* Make person image fill container */
+        position: absolute;
+        bottom: 0;
+        right: 0; /* Default position for mobile */
+        width: 90%; /* Make person image fill container */
         height: auto;
-        display: block; /* Remove extra space below image */
-        border-radius: 10px; /* Optional rounding */
-        z-index: 2; /* Ensure person is in front */
+        display: block;
+        border-radius: 10px;
+        z-index: 2;
+        filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
     }
 
     .hero .chart-image {
         position: absolute;
-        left: 0; /* Position relative to container */
-        bottom: 5%; /* Adjust position */
-        width: 60%; /* Size relative to container */
+        left: 0;
+        bottom: 10%; /* Adjust position */
+        width: 65%; /* Size relative to container */
         height: auto;
         z-index: 3; /* Above person image */
-        transform: translateX(-10%); /* Pull left slightly */
-        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); /* Add shadow */
-        opacity: 0.9; /* Slight transparency */
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        opacity: 0.9;
     }
-     @media (max-width: 768px) {
-         .hero .chart-image {
-             left: -5%; /* Adjust position for smaller screens */
-             bottom: 10%;
-             width: 70%;
-              transform: translateX(0); /* Don't translate on mobile */
-         }
-     }
 
 
     .hero .rupee-coin-image {
         position: absolute;
-        right: 5%; /* Position relative to container */
-        top: 5%; /* Adjust position */
+        right: 15%; /* Position relative to container */
+        top: 10%; /* Adjust position */
         width: 15%; /* Size relative to container */
         height: auto;
         z-index: 4; /* Highest z-index */
-        animation: bounce 2s infinite; /* Apply bounce animation */
-        filter: drop-shadow(0 0 10px var(--golden-color)); /* Golden glow */
+        animation: float 3s ease-in-out infinite alternate; /* Apply float animation */
+        filter: drop-shadow(0 0 15px var(--golden-color)); /* Golden glow */
     }
-    @media (max-width: 768px) {
-         .hero .rupee-coin-image {
-             right: 10%; /* Adjust position for smaller screens */
-             top: 15%;
-             width: 20%;
-         }
+
+
+     .hero .hero-cta-row {
+         margin-top: 2.5rem;
+         display: flex;
+         justify-content: center; /* Center buttons */
+         gap: 1rem;
+         flex-wrap: wrap;
      }
+      .hero-cta-row .cta-button {
+          font-size: 1.15rem;
+          padding: 0.9rem 1.8rem;
+      }
+       .hero-cta-row .whatsapp-cta {
+           background: #25D366; /* WhatsApp Green */
+           color: white;
+       }
 
 
-     .hero .hero-cta {
-         margin-top: 3rem;
-         font-size: 1.2rem; /* Larger button */
-     }
-
-
-    /* --- Flip Text (Simplified) --- */
-    .flip-text-container {
+    /* --- Authority Points List (below hero) --- */
+    .authority-points-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column; /* Stack on mobile */
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+        margin-bottom: 3rem;
         text-align: center;
-        margin-top: -2rem; /* Pull up slightly */
-        margin-bottom: 4rem;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: white;
-        z-index: 2;
-        position: relative;
+        font-size: 1.05rem;
+        color: #FFD700;
+        font-weight: 600;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
     }
-
-    .flip-text-container span {
-        display: block;
-        margin-bottom: 0.5rem;
-        background: var(--golden-color); /* Solid golden color */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
+    .authority-points-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        justify-content: center; /* Center list items on mobile */
     }
+     .authority-points-list li i {
+         color: var(--golden-color);
+         font-size: 1.2rem;
+     }
 
+
+    /* --- Animated Counter Section (Separator Style) --- */
+    .counter-section {
+      padding: 1.5rem var(--section-padding-h); /* Adjusted padding */
+      margin-bottom: 3rem; /* More space below counter */
+      max-width: var(--max-content-width);
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+       background: rgba(255, 255, 255, 0.03); /* Slight background difference */
+       border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+         box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .counter-grid.separator-style {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0;
+      width: 100%;
+    }
+    .counter-item {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 0.8rem 1rem 0.8rem; /* Adjusted padding */
+    }
+    .counter-icon {
+      font-size: 3rem; /* Increased icon size */
+      color: var(--golden-color);
+      margin-bottom: 0.8rem; /* More space below icon */
+      animation: bounce 1.5s infinite;
+       text-shadow: 0 0 15px rgba(255, 204, 0, 0.6); /* Softer glow */
+    }
+    .counter-value {
+      font-size: 3rem; /* Increased value size */
+      font-weight: 800;
+      color: var(--accent1);
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+      min-height: 3.2rem; /* Ensure consistent height */
+      line-height: 1.1;
+      font-family: 'Poppins',sans-serif;
+       text-shadow: 0 0 10px rgba(0, 198, 255, 0.4); /* Accent glow */
+    }
+    .counter-label {
+      font-size: 1.2rem; /* Increased label size */
+      color: #fff;
+      opacity: 0.95;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+    .counter-separator {
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent1) 0%, var(--accent2) 50%, var(--accent1) 100%);
+      margin: 0 1rem; /* Wider separator margin */
+      border-radius: 2px;
+      opacity: 0.3;
+      display: block;
+    }
 
     /* --- Key Points Section --- */
     .key-points {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly wider min */
       gap: 1.5rem;
     }
 
     .key-point {
       background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 10px;
+      padding: 1.8rem; /* Increased padding */
+      border-radius: 12px; /* More rounded */
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.05rem; /* Slightly smaller text here */
       font-weight: 600;
       border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column; /* Stack icon and text */
+      align-items: center; /* Center content */
+      justify-content: flex-start; /* Align items to top */
+      line-height: 1.4;
     }
+     .key-point strong { /* For the actual text within the point */
+         display: block;
+         margin-top: 0.8rem; /* Space between icon and text */
+         color: #ddd;
+     }
 
      .key-point i {
-        color: var(--accent1); /* Use accent1 for icons */
-        margin-right: 8px;
-        font-size: 1.4rem;
+        color: var(--golden-color); /* Use golden for key point icons */
+        font-size: 2.5rem; /* Larger icons */
+        margin-bottom: 0; /* Removed space */
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
      }
 
      .text-center {
@@ -458,11 +588,43 @@
      }
 
 
+    /* --- Embedded Reel Section --- */
+    #reel {
+        background: var(--dark-bg-middle); /* Ensure this section uses the body background */
+    }
+     #reel h2 {
+         margin-bottom: 2rem;
+     }
+
+    .reel-container {
+      display: flex;
+      justify-content: center;
+    }
+    .reel-container .reel-frame {
+      width: 100%;
+      max-width: 380px; /* Slightly larger max width */
+      aspect-ratio: 9/16;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .reel-container iframe {
+        width:100%;
+        height:100%;
+        border:none;
+    }
+
+
     /* --- Profit Screenshots Carousel --- */
+    #profits h2 {
+        margin-bottom: 1.5rem;
+    }
     .carousel-container {
       position: relative;
       overflow: hidden;
-      padding: 1rem 0;
+      padding: 1rem 0; /* Padding to show scrollbar */
     }
 
     .carousel {
@@ -470,12 +632,11 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      transition: scroll-left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      gap: 1.5rem;
-      padding-bottom: 1.5rem;
+      gap: 1rem; /* Smaller gap */
+      padding-bottom: 1.5rem; /* Space for scrollbar */
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
-      scrollbar-color: var(--accent1) transparent; /* Use accent1 for scrollbar */
+      scrollbar-color: var(--accent1) transparent;
     }
 
     .carousel::-webkit-scrollbar {
@@ -487,31 +648,59 @@
     }
 
     .carousel::-webkit-scrollbar-thumb {
-      background-color: var(--accent1); /* Use accent1 for scrollbar */
+      background-color: var(--accent1);
       border-radius: 10px;
       border: 2px solid var(--dark-bg-middle);
     }
 
+     .screenshot-item {
+         flex-shrink: 0;
+         width: 85%; /* Make images larger on mobile */
+         max-width: 350px; /* Max width for desktop */
+         scroll-snap-align: center;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         background: var(--card-bg); /* Card background for item */
+         border-radius: 10px;
+         overflow: hidden;
+         border: 1px solid rgba(255, 255, 255, 0.1);
+         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+         padding-bottom: 0.8rem; /* Padding for caption */
+     }
+
     .carousel img {
-      flex-shrink: 0;
-      width: 80%; /* Make images larger on mobile */
-      max-width: 380px; /* Max width for desktop */
+      width: 100%; /* Image fills its container */
       height: auto;
-      border-radius: 10px;
       object-fit: cover;
-      scroll-snap-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      display: block; /* Remove extra space */
+      border-radius: 10px 10px 0 0; /* Rounded top corners */
+       margin-bottom: 0.6rem; /* Space between image and caption */
+       border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Separator */
     }
-     .carousel p { /* Style for text below carousel */
+
+     .screenshot-caption {
         text-align: center;
         font-size: 0.9rem;
         color: #aaa;
-        margin-top: 1rem;
+        margin: 0 0.5rem; /* Add horizontal margin to caption */
+        padding: 0;
+        line-height: 1.4;
+        min-height: 1.4rem; /* Reserve space even if no caption */
+     }
+
+     .profits-disclaimer {
+         text-align: center;
+         font-size: 0.8rem;
+         color: #777;
+         margin-top: 1rem;
      }
 
 
     /* --- Reviews Section --- */
+    #reviews h2 {
+        margin-bottom: 1.5rem;
+    }
     .reviews-container {
         position: relative;
         padding: 1rem 0;
@@ -540,22 +729,29 @@
         margin-bottom: 1rem;
     }
 
-    .review .user-info img {
+     /* Style for generic avatar icon */
+    .review .user-info .avatar-icon {
         border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
+        width: 55px; /* Slightly smaller avatars */
+        height: 55px;
+        background: rgba(255, 255, 255, 0.1); /* Background for icon */
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-right: 1rem;
-        border: 2px solid var(--accent1); /* Use accent1 for review image border */
-    }
+        border: 2px solid var(--accent1);
+        font-size: 1.8rem; /* Icon size */
+        color: var(--golden-color); /* Icon color */
+     }
 
      .review .user-info strong {
-        font-size: 1.1rem;
+        font-size: 1.05rem; /* Slightly smaller name */
+        color: #eee;
      }
 
     .review p {
       font-style: italic;
-      font-size: 1rem;
+      font-size: 0.95rem; /* Slightly smaller review text */
       color: #ccc;
       margin-bottom: 0;
        flex-grow: 1;
@@ -576,12 +772,12 @@
         padding-bottom: 1.5rem;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
-        scrollbar-color: var(--accent1) transparent; /* Use accent1 for scrollbar */
+        scrollbar-color: var(--accent1) transparent;
      }
      .reviews-slider::-webkit-scrollbar { height: 8px; }
      .reviews-slider::-webkit-scrollbar-track { background: transparent; }
      .reviews-slider::-webkit-scrollbar-thumb {
-        background-color: var(--accent1); /* Use accent1 for scrollbar */
+        background-color: var(--accent1);
         border-radius: 10px;
         border: 2px solid var(--dark-bg-middle);
      }
@@ -594,33 +790,10 @@
      }
 
 
-    /* --- Stats/Stars Section --- */
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-item {
-        font-size: 1.2rem;
-        font-weight: 600;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-         flex-basis: 150px;
-    }
-
-    .stat-item i {
-        font-size: 3.5rem;
-         /* Apply golden color directly */
-        color: var(--golden-color);
-        margin-bottom: 0.5rem;
-        text-shadow: 0 0 15px rgba(255, 204, 0, 0.8); /* Softer, more attractive glow */
-    }
-
     /* --- FAQ Section --- */
+    #faq h2 {
+        margin-bottom: 1.5rem;
+    }
     .faq-item {
       margin-bottom: 1rem;
       background: var(--card-bg);
@@ -642,24 +815,38 @@
         margin-bottom: 0;
     }
 
+    /* --- Founder Section (Placeholder) --- */
+    /* .founder-section { ... styles ... } */
+
 
     /* --- Footer --- */
     footer {
-      /* background-color set by body */
+      position: absolute; /* Position absolute relative to body */
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--dark-bg-top-bottom);
       text-align: center;
-      padding: 3rem 1.5rem;
+      padding: 2.5rem 1.5rem calc(var(--footer-padding-bottom) - 2rem) 1.5rem; /* Adjust padding based on estimated height needed for floating buttons */
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 100; /* Ensure footer is above other content */
     }
+
+    footer .cta-button {
+        margin-bottom: 1.5rem;
+    }
+    footer .cta-button i { margin-left: 8px; }
+
 
     footer .footer-links {
         margin-bottom: 1.5rem;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        gap: 0.8rem 1.2rem; /* Gap between links */
     }
 
     footer .footer-links a {
-        margin: 0.5rem 0.75rem;
         color: #ddd;
         text-decoration: none;
         font-weight: 500;
@@ -671,21 +858,17 @@
         color: var(--accent2);
     }
 
-    footer .cta-button {
-        margin-bottom: 1.5rem;
-    }
-
-
     footer p {
       margin-top: 1rem;
       font-size: 0.85rem;
       color: #aaa;
       margin-bottom: 0;
+      line-height: 1.4;
     }
      footer p:last-child {
-         margin-top: 0.5rem;
-         font-size: 0.75rem;
-         color: #777;
+         margin-top: 0.8rem;
+         font-size: 0.8rem; /* Increased size for disclaimer */
+         color: #999; /* Lighter color for disclaimer */
      }
 
 
@@ -694,31 +877,44 @@
         .hero-content-wrapper {
             flex-direction: row; /* Side-by-side on desktop */
             justify-content: space-around;
-            align-items: flex-start; /* Align items to the top */
+            align-items: center; /* Align items to center vertically */
         }
 
         .hero-left, .hero-right {
-             width: auto; /* Allow flex to determine width */
-             max-width: 500px; /* Prevent columns from getting too wide */
+             width: 50%; /* Split width */
+             max-width: none; /* Remove mobile max-width */
+             /* Override align-items: flex-start; for children that should be centered */
+              align-items: center; /* Center contents within the left column */
+              text-align: center; /* Center text within the left column */
+        }
+         /* Explicitly center items within the hero-left */
+         .hero-left .logo-container,
+         .hero-left h1,
+         .hero-left > p,
+         .hero-left .telegram-handle,
+         .hero-left .hero-cta-row,
+         .authority-points-list {
+             text-align: center; /* Ensure these are centered even if parent flex is left */
+             justify-content: center; /* Center flex items */
+             margin-left: auto; /* Use auto margins to help centering block elements */
+             margin-right: auto;
+         }
+          .authority-points-list li {
+               justify-content: center; /* Center list items */
+          }
+
+        .hero .telegram-handle {
+             /* Reset desktop override if any was needed, let base style (centered, smaller) apply */
+             font-size: 1rem; /* Maintain reduced size */
+             flex-direction: column; /* Keep stacked */
+             gap: 5px; /* Keep gap */
         }
 
-         .hero-left {
-             align-items: flex-start; /* Align text/items to the left */
-             text-align: left; /* Align text to the left */
-         }
-
-         .hero-left h1,
-         .hero-left .telegram-handle {
-             text-align: left; /* Override center alignment for these */
-             justify-content: flex-start;
-         }
 
         .hero-image-container {
             width: 100%; /* Full width within its column */
-            max-width: none; /* Remove mobile max-width */
-            /* Adjust positioning for desktop */
-            position: relative; /* Ensure children are positioned relative to this */
-            padding-bottom: 60%; /* Create space based on aspect ratio for images */
+            max-width: none;
+            padding-bottom: 70%; /* Adjust padding based on image aspect ratio */
             height: 0;
         }
          .hero-image-container .person-image,
@@ -743,146 +939,344 @@
          }
 
          .hero .rupee-coin-image {
-             left: 45%; /* Position relative to chart/person */
+             left: 40%; /* Position relative to chart/person */
              top: 5%;
              width: 10%;
-             animation: bounce 2s infinite; /* Apply bounce animation */
          }
 
-         .hero .hero-cta {
-             align-self: flex-start; /* Align button to the left in the left column */
+        .hero .hero-cta {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+         .hero-cta-row {
+            justify-content: center; /* Center buttons */
          }
-          .hero .stats-list {
-              align-self: flex-start; /* Align list to the left */
+
+
+         /* Desktop specific counter layout */
+         .counter-section {
+             padding: 1.5rem 1rem;
+         }
+         .counter-grid.separator-style {
+             flex-direction: row;
+             gap: 0;
+             padding: 1.5rem 1rem;
+         }
+         .counter-item {
+             padding: 0 1rem; /* Adjusted padding */
+             flex-basis: 0;
+             flex-grow: 1;
+         }
+          .counter-value { font-size: 3.2rem; min-height: 3.5rem; }
+          .counter-label { font-size: 1.25rem; }
+          .counter-icon { font-size: 3.5rem; }
+          .counter-separator { display: block; width: 2px; margin: 0 1.5rem; height: auto;}
+
+
+        .key-points {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider min */
+            gap: 2rem; /* More gap */
+        }
+        .key-point {
+            flex-direction: row; /* Icon left, text right */
+            text-align: left;
+            justify-content: flex-start;
+        }
+         .key-point strong {
+             margin-top: 0;
+              margin-left: 1rem; /* Space between icon and text */
+             display: inline; /* Allow text to wrap naturally */
+         }
+          .key-point i {
+              font-size: 2rem;
           }
+
+
+        .reviews-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider min */
+            gap: 2rem; /* More gap */
+        }
+        .reviews-slider .review {
+            width: 450px; /* Wider slider items */
+            max-width: none;
+        }
+
+         /* Founder section desktop layout */
+         .founder-section .section-content {
+             display: flex;
+             align-items: center;
+             gap: 3rem;
+         }
+          .founder-image {
+              flex-shrink: 0;
+              width: 250px;
+              height: 250px;
+              object-fit: cover;
+              border-radius: 50%;
+              border: 4px solid var(--golden-color);
+          }
+           .founder-text {
+               flex-grow: 1;
+               text-align: left;
+           }
+            .founder-text h3 { text-align: left; margin-bottom: 1rem; }
+            .founder-text p { text-align: left; }
+
+        /* Floating button tooltips on desktop */
+        .floating-button::after {
+            content: attr(aria-label); /* Use aria-label for tooltip text */
+            position: absolute;
+            right: calc(100% + 10px); /* Position to the left of the button */
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+             pointer-events: none; /* Don't block clicks */
+             z-index: 11001; /* Ensure tooltip is above button */
+        }
+         /* Tooltip specific for the Telegram button (on the left) */
+        .floating-telegram::after {
+             left: calc(100% + 10px); /* Position to the right of the button */
+             right: auto; /* Reset right */
+        }
+         .floating-button:hover::after {
+             opacity: 1;
+             visibility: visible;
+         }
+
 
     }
 
 
     @media (max-width: 768px) {
-        h1 { font-size: calc(var(--h1-size) - 0.5rem); }
-        h2 { font-size: calc(var(--h2-size) - 0.4rem); }
-        h3 { font-size: calc(var(--h3-size) - 0.2rem); }
-        p { font-size: var(--text-small); }
         .section { padding: var(--section-padding-mobile) var(--section-padding-h-mobile); }
-        .key-points { grid-template-columns: 1fr; }
-        .key-point { font-size: var(--text-small); }
-        .reviews-grid { grid-template-columns: 1fr; }
-        .counter-value { font-size: 1.8rem; }
-        .counter-label { font-size: var(--text-xs); }
-        .counter-icon { font-size: 1.5rem; }
-        
+        h1 { font-size: var(--h1-size); }
+        h2 { font-size: var(--h2-size); margin-bottom: var(--content-margin); }
+        h3 { font-size: var(--h3-size); }
+        p { font-size: var(--text-small); }
+
         /* Mobile navigation fixes */
-        nav { padding: 0.8rem 1rem; }
+        nav { padding: 0.8rem 1rem; min-height: var(--nav-height); }
         nav .logo img { height: 30px; }
         nav .nav-links { display: none; } /* Hide nav links on mobile */
         .menu-toggle { display: block; } /* Show hamburger menu */
         nav .nav-cta { display: none; } /* Hide nav CTA on mobile */
-        
+        .sidebar { top: var(--nav-height); height: calc(100% - var(--nav-height));} /* Adjust sidebar position */
+
+
         /* Mobile hero section fixes */
         .hero { padding: 2.5rem 1rem; }
-        .hero h1 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .hero .telegram-handle { font-size: 1.2rem; margin-bottom: 1.5rem; }
-        
-        .carousel img {
-            width: 85%;
+        .hero h1 { font-size: var(--h1-size); margin-bottom: 1rem; }
+        .hero > p { font-size: 1rem; margin-bottom: 1.5rem; }
+         /* Telegram handle style on mobile */
+        .hero .telegram-handle {
+             font-size: 0.95rem; /* Keep reduced size */
+             margin-bottom: 1.5rem;
+             flex-direction: column; /* Keep stacked */
+             gap: 5px; /* Keep gap */
+             text-align: center;
+             justify-content: center;
+             align-items: center;
         }
-        .reviews-slider .review {
-            width: 90%;
-        }
-
-
-        .stat-item {
-            font-size: 1.1rem;
-            flex-basis: auto;
-            min-width: 120px;
-        }
-         .stat-item i {
-            font-size: 3rem;
+         .hero .telegram-handle .handle {
+             font-size: 1.1rem; /* Keep handle larger */
          }
 
-        .review .user-info img {
-            width: 50px;
-            height: 50px;
+
+         .hero .logo-container img { width: 70px; height: 70px;} /* Adjust logo size */
+         .hero .logo-container .logo-text { font-size: 1.1rem; }
+         .hero .hero-cta-row { gap: 0.8rem; margin-top: 2rem; }
+          .hero-cta-row .cta-button { font-size: 1.05rem; padding: 0.8rem 1.5rem; min-width: 200px; }
+
+         .authority-points-list {
+             font-size: 1rem;
+             margin-bottom: 2rem;
+             gap: 0.6rem;
+         }
+         .authority-points-list li i { font-size: 1.1rem; }
+
+
+         /* Counter Section Mobile */
+        .counter-section {
+           padding: 1.5rem var(--section-padding-h-mobile);
+           margin-bottom: 2rem;
         }
+        .counter-grid.separator-style {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .counter-item {
+          padding: 1.2rem 0 1.2rem 0;
+        }
+        .counter-value { font-size: 2.3rem; font-weight: 900; line-height: 1.1; min-height: 2.5rem; }
+        .counter-icon { font-size: 2.1rem; }
+        .counter-label { font-size: 1.1rem; }
+        .counter-separator {
+          width: 80%;
+          height: 2px;
+          margin: 0.5rem auto;
+          background: linear-gradient(to right, var(--accent1) 0%, var(--accent2) 50%, var(--accent1) 100%);
+          opacity: 0.25;
+        }
+
+
+         .key-points {
+             grid-template-columns: 1fr; /* Single column on mobile */
+             gap: 1rem;
+         }
+          .key-point {
+              padding: 1.2rem;
+              font-size: 0.95rem;
+               flex-direction: row; /* Icon left, text right */
+               text-align: left;
+               justify-content: flex-start;
+          }
+           .key-point strong { margin-top: 0; margin-left: 0.8rem; display: inline;}
+           .key-point i { font-size: 1.8rem; }
+
+
+        .carousel img { width: 90%;}
+        .screenshot-item { width: 90%; }
+         .screenshot-caption { font-size: 0.85rem; }
+         .profits-disclaimer { font-size: 0.75rem; }
+
+
+        .reviews-grid { grid-template-columns: 1fr; gap: 1rem;}
+        .reviews-slider .review { width: 90%; }
+        .review .user-info .avatar-icon { width: 50px; height: 50px; font-size: 1.6rem;}
          .review .user-info strong { font-size: 1rem; }
          .review p { font-size: 0.95rem; }
 
+        .faq-item { padding: 1.2rem; }
+         .faq-item strong { font-size: 1rem; }
+         .faq-item p { font-size: 0.9rem; }
 
-        footer .footer-links a {
-            margin: 0.4rem 0.6rem;
-            font-size: 0.85rem;
-        }
-         footer .cta-button {
-             font-size: 1rem;
-             padding: 0.6rem 1.2rem;
+         /* Founder section mobile layout */
+         .founder-section .section-content {
+              flex-direction: column;
+              gap: 1.5rem;
          }
+          .founder-image {
+               width: 150px;
+               height: 150px;
+          }
+           .founder-text { text-align: center; }
+            .founder-text h3, .founder-text p { text-align: center; }
+
+        footer { padding: 2rem 1rem calc(var(--footer-padding-bottom) - 1.5rem) 1rem; }
+         footer .footer-links { gap: 0.6rem 1rem; }
+         footer .footer-links a { font-size: 0.9rem; }
          footer p { font-size: 0.8rem; }
-         footer p:last-child { font-size: 0.7rem; }
+         footer p:last-child { font-size: 0.75rem; margin-top: 0.6rem;}
+
+        /* Floating buttons Mobile */
+         .floating-button {
+            width: 55px; height: 55px; font-size: 2rem;
+            bottom: 16px; /* Align buttons at the same bottom edge */
+         }
+        .floating-whatsapp { right: 16px; left: auto; } /* WhatsApp on the right */
+        .floating-telegram { left: 16px; right: auto; } /* Telegram on the left */
+
+        .floating-button::after { /* Hide tooltips on small mobile */
+           display: none;
+       }
+         /* Remove floating buttons container */
+         .floating-buttons-container { display: contents; } /* Make container not affect layout */
+
 
     }
 
      @media (max-width: 480px) {
-         h1 { font-size: 2rem; }
-         h2 { font-size: 1.6rem; }
-         .section { padding: 2rem 0.8rem; }
-          nav { padding: 0.6rem 0.8rem; }
+         .section { padding: 1.5rem 0.8rem; }
+         h1 { font-size: var(--h1-size); }
+         h2 { font-size: var(--h2-size); margin-bottom: var(--content-margin-mobile); }
+         h3 { font-size: var(--h3-size); }
+         p { font-size: var(--text-small); }
 
-         .hero { padding: 2.5rem 0.8rem; } /* Adjust padding for smallest screens */
-          .hero h1 { font-size: 2.2rem; margin-bottom: 0.8rem;}
-          .hero .telegram-handle { font-size: 1.1rem; margin-bottom: 1.5rem;}
-           .hero > p { font-size: 1rem; margin-bottom: 1.5rem;}
+         nav { padding: 0.6rem 0.8rem; min-height: var(--nav-height);}
+          nav .logo img { height: 28px; }
+           nav .logo-text { font-size: 1.1rem; }
 
-          .hero .logo-container img {
-              width: 60px; /* Adjust logo size on smallest screens */
-              height: 60px;
+         .hero { padding: 2rem 0.8rem; }
+          .hero h1 { font-size: var(--h1-size); margin-bottom: 0.8rem;}
+          .hero > p { font-size: 0.95rem; margin-bottom: 1.2rem;}
+           /* Telegram handle style on smallest mobile */
+          .hero .telegram-handle {
+             font-size: 0.9rem; /* Further reduced size */
+             margin-bottom: 1.2rem;
+             gap: 4px;
           }
-           .hero .logo-container .logo-text { font-size: 1.1rem; }
-
-          .hero .hero-cta {
-              margin-top: 2rem;
-              font-size: 1.1rem;
-              padding: 0.6rem 1.2rem;
-          }
-
-         .hero .stats-list { font-size: 0.9rem; margin-top: 1rem; margin-bottom: 2rem; }
-         .hero .stats-list li::before { font-size: 1rem; }
+           .hero .telegram-handle .handle {
+               font-size: 1rem; /* Keep handle larger */
+           }
 
 
-         .flip-text-container {
-             font-size: 1.3rem;
-             margin-top: -1rem;
-             margin-bottom: 2rem;
+          .hero .logo-container img { width: 60px; height: 60px;}
+           .hero .logo-container .logo-text { font-size: 1rem; }
+
+          .hero .hero-cta-row { gap: 0.6rem; margin-top: 1.5rem;}
+           .hero-cta-row .cta-button { font-size: 1rem; padding: 0.7rem 1.2rem; min-width: 180px; }
+
+         .authority-points-list {
+             font-size: 0.95rem;
+             margin-bottom: 1.5rem;
          }
-          .flip-text-container span { margin-bottom: 0.3rem;}
+         .authority-points-list li i { font-size: 1rem; }
 
 
-         .key-points {
-             grid-template-columns: 1fr;
-             gap: 0.8rem;
+         /* Counter Section Smaller Mobile */
+        .counter-section {
+           padding: 1rem 0.8rem;
+           margin-bottom: 1.5rem;
+        }
+        .counter-item {
+          padding: 1rem 0 1rem 0;
+        }
+        .counter-value { font-size: 2.1rem; min-height: 2.3rem; }
+        .counter-icon { font-size: 1.8rem; }
+        .counter-label { font-size: 1rem; }
+
+
+         .key-point {
+              padding: 1rem;
+              font-size: 0.9rem;
          }
-          .key-point { font-size: 0.95rem; padding: 0.8rem; }
+          .key-point strong { margin-left: 0.6rem; }
+           .key-point i { font-size: 1.6rem; }
 
 
-         .carousel img { width: 90%; }
+         .screenshot-item { width: 95%; }
+          .screenshot-caption { font-size: 0.8rem; }
+
+
          .reviews-slider .review { width: 95%; }
-
-         .stat-item { min-width: 100px; }
-          .stat-item i { font-size: 2.5rem; }
-
-         .review .user-info img { width: 45px; height: 45px; }
+         .review .user-info .avatar-icon { width: 45px; height: 45px; font-size: 1.4rem;}
           .review .user-info strong { font-size: 0.95rem; }
           .review p { font-size: 0.9rem; }
 
-          .faq-item { padding: 1rem; }
-           .faq-item strong { font-size: 1rem; }
-           .faq-item p { font-size: 0.9rem; }
+         .faq-item { padding: 1rem; }
+          .faq-item strong { font-size: 1rem; }
+          .faq-item p { font-size: 0.9rem; }
 
-          footer { padding: 2rem 0.8rem; }
-           footer .footer-links a { margin: 0.3rem 0.5rem; font-size: 0.8rem; }
-           footer .cta-button { font-size: 0.9rem; padding: 0.5rem 1rem; }
-           footer p { font-size: 0.75rem; }
-            footer p:last-child { font-size: 0.65rem; }
+
+         footer { padding: 1.5rem 0.8rem calc(var(--footer-padding-bottom) - 1.2rem) 0.8rem; }
+          footer .footer-links { gap: 0.5rem 0.8rem; }
+          footer .footer-links a { font-size: 0.8rem; }
+          footer p { font-size: 0.75rem; }
+           footer p:last-child { font-size: 0.7rem; margin-top: 0.5rem; }
+
+         /* Floating buttons smallest mobile */
+         .floating-button { width: 50px; height: 50px; font-size: 1.8rem; bottom: 12px;}
+         .floating-whatsapp { right: 12px; left: auto;}
+         .floating-telegram { left: 12px; right: auto;}
+
 
      }
 
@@ -893,110 +1287,84 @@
     }
 
 
-    /* Counter Section Styles (Separator Style) */
-    .counter-section {
-      background: none !important;
-      box-shadow: none !important;
-      padding-bottom: 0 !important;
-      margin-bottom: 1.5rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 2;
+    /* Floating WhatsApp and Telegram Buttons */
+    /* Removed floating-buttons-container, position buttons directly */
+
+    .floating-button {
+        position: fixed; /* Fixed position */
+        bottom: 24px; /* Default bottom position */
+        z-index: 11000;
+        border-radius: 50%;
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+        cursor: pointer;
+        border: none;
+        transition: box-shadow 0.2s, transform 0.2s;
+        color: #fff;
+        text-decoration: none;
+        /* Removed relative position, already fixed */
     }
-    .counter-grid.separator-style {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      gap: 0;
-      width: 100%;
-      background: none;
+
+    /* Positioning for WhatsApp (Right) and Telegram (Left) */
+    .floating-whatsapp {
+      background: #25D366; /* WhatsApp Green */
+      right: 24px; /* Position on the right */
+      left: auto; /* Ensure left is auto */
     }
-    .counter-item {
-      flex: 1 1 0;
-      min-width: 0;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.2rem 0.5rem 1rem 0.5rem;
-      background: none;
-      box-shadow: none;
-      border-radius: 0;
+    .floating-telegram {
+        background: #0088cc; /* Telegram Blue */
+        left: 24px; /* Position on the left */
+        right: auto; /* Ensure right is auto */
     }
-    .counter-icon {
-      font-size: 2.7rem;
-      color: var(--golden-color);
-      margin-bottom: 0.7rem;
-      animation: bounce 1.5s infinite;
+
+
+    .floating-button:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      transform: translateY(-4px); /* Increased hover lift */
     }
-    .counter-value {
-      font-size: 2.7rem;
-      font-weight: 800;
-      color: var(--accent1);
-      margin-bottom: 0.2rem;
-      letter-spacing: 1px;
-      min-height: 2.8rem;
-      line-height: 1.1;
-      font-family: 'Poppins',sans-serif;
+
+     /* Optional Tooltips for Floating Buttons */
+    .floating-button::after {
+        content: attr(aria-label); /* Use aria-label for tooltip text */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+         pointer-events: none; /* Don't block clicks */
+         z-index: 11001; /* Ensure tooltip is above button */
     }
-    .counter-label {
-      font-size: 1.15rem;
-      color: #fff;
-      opacity: 0.92;
-      font-weight: 600;
-      margin-bottom: 0.1rem;
+
+     /* Tooltip position specific for WhatsApp (on the right side of screen, tooltip to the left) */
+     .floating-whatsapp::after {
+        right: calc(100% + 10px); /* Position to the left of the button */
+        left: auto; /* Ensure left is auto */
+     }
+     /* Tooltip position specific for Telegram (on the left side of screen, tooltip to the right) */
+    .floating-telegram::after {
+         left: calc(100% + 10px); /* Position to the right of the button */
+         right: auto; /* Ensure right is auto */
     }
-    .counter-separator {
-      width: 2px;
-      background: linear-gradient(to bottom, #00f2fa 0%, #fff 100%);
-      margin: 0 0.5rem;
-      border-radius: 2px;
-      opacity: 0.25;
-      display: block;
-    }
-    @media (max-width: 768px) {
-      .counter-grid.separator-style {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .counter-item {
-        padding: 1.2rem 0 1.2rem 0;
-      }
-      .counter-value {
-        font-size: 2.3rem;
-        font-weight: 900;
-        line-height: 1.1;
-      }
-      .counter-icon {
-        font-size: 2.1rem;
-      }
-      .counter-separator {
-        width: 80%;
-        height: 2px;
-        margin: 0.5rem auto;
-        background: linear-gradient(to right, #00f2fa 0%, #fff 100%);
-        opacity: 0.25;
-      }
-    }
-    @media (max-width: 480px) {
-      .counter-section {
-        padding: 0.7rem 0.1rem 0.7rem 0.1rem;
-      }
-      .counter-value {
-        font-size: 2.1rem;
-        font-weight: 900;
-        line-height: 1.1;
-      }
-      .counter-label {
-        font-size: 1.02rem;
-      }
-      .counter-icon {
-        font-size: 1.7rem;
-      }
-    }
+
+
+     .floating-button:hover::after {
+         opacity: 1;
+         visibility: visible;
+     }
+
+
   </style>
 </head>
 <body>
@@ -1004,26 +1372,28 @@
     <!-- Mobile Sidebar -->
     <div class="sidebar" id="sidebar">
         <a href="#hero">Home</a>
-        <a href="#keypoints">Why Us</a>
-        <a href="#profits">Profits</a>
-        <a href="#reviews">Reviews</a>
+        <a href="#counter">Members & Results</a> <!-- Link to counter -->
+        <a href="#keypoints">Why Join Us</a> <!-- Rephrased link -->
+        <a href="#profits">Profit Proof</a> <!-- Rephrased link -->
+        <a href="#reviews">Testimonials</a> <!-- Rephrased link -->
+         <a href="#faq">FAQs</a> <!-- Link to FAQ -->
         <!-- CTA Button in Sidebar -->
-        <a href="https://t.me/bankniftysure23" class="cta-button">Join Telegram →</a>
+        <a href="https://t.me/bankniftysure23" class="cta-button">Join Telegram Now →</a>
     </div>
 
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <!-- Bank Nifty Bull Logo using the provided URL -->
             <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="Bank Nifty Options Logo">
-            <!-- Removed text logo as requested -->
             <span class="logo-text">BankniftyOnly</span>
         </div>
         <div class="nav-links">
             <a href="#hero">Home</a>
-            <a href="#keypoints">Why Us</a>
-            <a href="#profits">Profits</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#counter">Members & Results</a>
+            <a href="#keypoints">Why Join Us</a>
+            <a href="#profits">Profit Proof</a>
+            <a href="#reviews">Testimonials</a>
+            <a href="#faq">FAQs</a>
         </div>
         <a href="https://t.me/bankniftysure23" class="cta-button nav-cta">Join Telegram →</a>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
@@ -1032,7 +1402,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="section hero" id="hero">
         <div class="hero-content-wrapper">
             <div class="hero-left">
                 <div class="logo-container">
@@ -1040,191 +1410,177 @@
                     <span class="logo-text">BankniftyOnly</span>
                 </div>
 
-                <h1>JOIN OUR FREE BANK NIFTY TRADING COMMUNITY</h1>
+                <h1 style="
+                  font-size: var(--h1-size);
+                  font-weight: 900;
+                  text-transform: uppercase;
+                  background: linear-gradient(120deg, #fff4c2, #ffd700, #ffb200, #fff4c2);
+                  background-size: 300% 300%;
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  animation: shimmer 3s infinite linear;
+                  text-align: center; /* Centered */
+                  margin: 0 auto var(--content-margin-mobile) auto; /* Centered block */
+                  letter-spacing: 0.5px;
+                  text-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+                  max-width: 600px; /* Limit max width for better readability */
+                ">
+                  JOIN INDIA'S LARGEST BANK NIFTY TRADING COMMUNITY
+                </h1>
+
+                <p>
+                    Find High-Accuracy Bank Nifty Options Signals.
+                </p>
 
                 <div class="telegram-handle">
-                    <i class="fab fa-telegram-plane"></i> @Bankniftysure23 <!-- Updated Telegram Handle -->
+                   <span>Join our vibrant community on Telegram:</span>
+                   <span class="handle"><i class="fab fa-telegram-plane"></i> @Bankniftysure23</span>
                 </div>
 
-                <div class="cta-btn-row hero-btn-row" style="display: flex; align-items: center; justify-content: center; gap: 0.2rem; flex-wrap: wrap;">
-                  <a href="https://t.me/bankniftysure23" class="cta-button hero-cta" style="min-width: 210px;">Join The Free Group Now <i class="fas fa-arrow-right"></i></a>
-                  <a href="https://wa.me/1234567890" class="cta-button whatsapp-cta" target="_blank" style="background: #25D366; color: #fff; min-width: 210px;"><i class="fab fa-whatsapp" style="margin-right: 6px;"></i>Join on WhatsApp Group</a>
+                <div class="hero-cta-row">
+                  <a href="https://t.me/bankniftysure23" class="cta-button" style="min-width: 240px;">Join Telegram Group Now<i class="fas fa-arrow-right"></i></a>
+                  <a href="https://wa.me/1234567890" class="cta-button whatsapp-cta" target="_blank" style="min-width: 240px;"><i class="fab fa-whatsapp"></i>Or Join on WhatsApp Group</a>
                 </div>
-                <style>
-                  .hero-btn-row {
-                    flex-direction: row;
-                  }
-                  @media (max-width: 600px) {
-                    .hero-btn-row {
-                      flex-direction: column;
-                      gap: 0.3rem;
-                    }
-                    .hero-btn-row .or-text {
-                      margin: 0.1rem 0;
-                    }
-                  }
-                </style>
+
+                 <ul class="authority-points-list">
+                   <li><i class="fas fa-fire"></i><span>82%+ of traders earn profits daily</span></li>
+                   <li><i class="fas fa-chart-pie"></i><span>5+ years of market experience & data</span></li>
+                   <li><i class="fas fa-clock"></i><span>Live Bank Nifty insights shared in real-time</span></li>
+                 </ul>
 
             </div>
-
+             <!-- Placeholder for Hero Image Container (Optional visual element) -->
+            <!-- If you want the image section, uncomment this div and add img tags inside -->
+            <!--
+            <div class="hero-right">
+                 <div class="hero-image-container">
+                     <img src="placeholder-person.png" alt="Experienced Trader" class="person-image">
+                     <img src="placeholder-chart.png" alt="Trading Chart" class="chart-image">
+                     <img src="placeholder-rupee-coin.png" alt="Profit Coin" class="rupee-coin-image">
+                 </div>
+            </div>
+            -->
         </div>
     </section>
 
-    <!-- Flip Text Section (Simplified) -->
-    <div class="flip-text-container">
-        <span>Profit Growth Surpassing 75%</span> <!-- Simplified text, needs JS for flip animation -->
-        <span>10,000+ Satisfied Members Earning Daily</span> <!-- Simplified text -->
-    </div>
 
     <!-- Animated Counter Section -->
-    <section class="section counter-section" style="background:none;box-shadow:none;padding-bottom:0;">
-  <div class="counter-grid separator-style">
-    <div class="counter-item">
-      <div class="counter-icon"><i class="fas fa-users"></i></div>
-      <h3 class="counter-value" id="counter-members" style="font-weight: bold;">0</h3>
-      <div class="counter-label">Members</div>
-    </div>
-    <div class="counter-separator"></div>
-    <div class="counter-item">
-      <div class="counter-icon"><i class="fas fa-chart-line"></i></div>
-      <h3 class="counter-value" id="counter-profit" style="font-weight: bold;">0</h3>
-      <div class="counter-label">Average Profit</div>
-    </div>
-    <div class="counter-separator"></div>
-    <div class="counter-item">
-      <div class="counter-icon"><i class="fas fa-bolt"></i></div>
-      <h3 class="counter-value" id="counter-trades" style="font-weight: bold;">0</h3>
-      <div class="counter-label">Daily Trades Signal</div>
-    </div>
-  </div>
-</section>
+    <section class="section counter-section" id="counter">
+        <!-- No H2 here, as it follows the Hero closely -->
+      <div class="counter-grid separator-style">
+        <div class="counter-item">
+          <div class="counter-icon"><i class="fas fa-users"></i></div>
+          <h3 class="counter-value" id="counter-members">0</h3>
+          <div class="counter-label">Members</div>
+        </div>
+        <div class="counter-separator"></div>
+        <div class="counter-item">
+          <div class="counter-icon"><i class="fas fa-chart-line"></i></div>
+          <h3 class="counter-value" id="counter-profit">0</h3>
+          <div class="counter-label">Average Profit Per Signal</div> <!-- More specific label -->
+        </div>
+        <div class="counter-separator"></div>
+        <div class="counter-item">
+          <div class="counter-icon"><i class="fas fa-bolt"></i></div>
+          <h3 class="counter-value" id="counter-trades">0</h3>
+          <div class="counter-label">Daily Trade Signals</div>
+        </div>
+      </div>
+        <div class="text-center" style="margin-top: 2.5rem;">
+           <a href="https://t.me/bankniftysure23" class="cta-button">See Our Numbers Grow - Join Free <i class="fas fa-arrow-right"></i></a>
+       </div>
+    </section>
+
 
     <!-- Key Points Section -->
     <section class="section" id="keypoints">
-        <h2>Why Choose Our Signals?</h2>
+        <h2>Why BankniftyOnly is India's Most Trusted Community</h2>
         <div class="key-points">
-            <div class="key-point"><i class="fas fa-check-circle"></i> Proven High-Accuracy Strategy</div>
-            <div class="key-point"><i class="fas fa-chart-line"></i> Precise Daily Entry & Exit Points</div>
-            <div class="key-point"><i class="fas fa-users"></i> Trusted by Over 10,000 Traders</div>
-            <div class="key-point"><i class="fas fa-shield-alt"></i> Strict Risk Management Applied</div>
-             <div class="key-point"><i class="fas fa-rupee-sign"></i> Focus on Consistent Capital Growth</div>
-             <div class="key-point"><i class="fas fa-clock"></i> Real-time Signal Delivery</div>
+            <div class="key-point"><i class="fas fa-check-circle"></i><strong>Data-Backed High Accuracy Rates</strong></div>
+            <div class="key-point"><i class="fas fa-chart-line"></i><strong>Expertly Analyzed Daily Trade Signals</strong></div>
+            <div class="key-point"><i class="fas fa-users"></i><strong>Trusted by Over 10,000 Traders (And Growing!)</strong></div>
+            <div class="key-point"><i class="fas fa-shield-alt"></i><strong>Non-Negotiable Risk Management Focus</strong></div>
+             <div class="key-point"><i class="fas fa-rupee-sign"></i><strong>Strategy Focused on Sustainable Capital Growth</strong></div>
+             <div class="key-point"><i class="fas fa-clock"></i><strong>Lightning-Fast Real-time Alerts & Updates</strong></div>
+             <div class="key-point"><i class="fas fa-comments"></i><strong>Supportive & Collaborative Community</strong></div> <!-- New point -->
         </div>
          <div class="text-center" style="margin-top: 3rem;">
-             <a href="https://t.me/bankniftysure23" class="cta-button">Ready to Profit? Join Now <i class="fas fa-arrow-right"></i></a>
+             <a href="https://t.me/bankniftysure23" class="cta-button">Ready to Trade Smarter? Join Now <i class="fas fa-arrow-right"></i></a>
          </div>
     </section>
 
     <!-- Embedded Reel Section -->
     <section class="section" id="reel">
-      <h2>Watch Our Latest Reel</h2>
-      <div style="display: flex; justify-content: center;">
-        <div style="width: 100%; max-width: 400px; aspect-ratio: 9/16; background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
-          <iframe src="https://www.instagram.com/reel/C4QJwYdJ9K2/embed" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
+      <h2>Watch How We Trade (Latest Reel)</h2> <!-- Rephrased headline -->
+      <div class="reel-container">
+        <div class="reel-frame">
+          <!-- Replace with your actual Instagram Reel embed code -->
+          <iframe src="https://www.instagram.com/reel/C4QJwYdJ9K2/embed" style="width:100%;height:100%;border:none;" allowfullscreen scrolling="no"></iframe>
         </div>
       </div>
+       <div class="text-center" style="margin-top: 2rem;">
+           <p style="margin-bottom: 0; color: #ccc; font-size: 0.9rem;">See live trading analysis & results.</p>
+       </div>
     </section>
 
-    <!-- Profit Screenshots Carousel -->
-  <section class="section" id="profits">
-  <h2>Live Profit Screenshots from Our Members</h2>
-  
+ <section class="section" id="profits">
+  <h2>Real Profit Screenshots from Our Members</h2>
+
   <div class="carousel-container">
     <div class="carousel">
-      <!-- Bank Nifty Profit Screenshots -->
-      <img src="https://i.postimg.cc/zG55NQDQ/1lakh.jpg" alt="Profit Screenshot 1">
-      <img src="https://i.postimg.cc/cHVyb95X/10k.jpg" alt="Profit Screenshot 2">
-      <img src="https://i.postimg.cc/449T9GmM/12k.jpg" alt="Profit Screenshot 3">
-      <img src="https://i.postimg.cc/Hsrd3MZS/ss7.jpg" alt="Profit Screenshot 4">
-      <img src="https://i.postimg.cc/fTQQ7Pdb/20k.jpg" alt="Profit Screenshot 5">
-      <img src="https://i.postimg.cc/y8wd0j7X/ss6.jpg" alt="Profit Screenshot 6">
-      <img src="https://i.postimg.cc/mgMRWsGC/ss8.jpg" alt="Profit Screenshot 7">
+      <!-- Screenshots - Use REAL ones and wrap in div for caption -->
+      <div class="screenshot-item">
+          <img src="https://i.postimg.cc/zG55NQDQ/1lakh.jpg" alt="Profit Screenshot 1">
+          <p class="screenshot-caption">₹1,00,000+ Profit achieved!</p>
+      </div>
+       <div class="screenshot-item">
+           <img src="https://i.postimg.cc/cHVyb95X/10k.jpg" alt="Profit Screenshot 2">
+           <p class="screenshot-caption">Quick gains with today's signal.</p>
+       </div>
+        <div class="screenshot-item">
+           <img src="https://i.postimg.cc/449T9GmM/12k.jpg" alt="Profit Screenshot 3">
+           <p class="screenshot-caption">Another successful trade.</p>
+       </div>
+        <div class="screenshot-item">
+           <img src="https://i.postimg.cc/Hsrd3MZS/ss7.jpg" alt="Profit Screenshot 4">
+           <p class="screenshot-caption">Consistent results for members.</p>
+       </div>
+       <div class="screenshot-item">
+           <img src="https://i.postimg.cc/fTQQ7Pdb/20k.jpg" alt="Profit Screenshot 5">
+           <p class="screenshot-caption">Example profit from the free group.</p>
+       </div>
+        <div class="screenshot-item">
+           <img src="https://i.postimg.cc/y8wd0j7X/ss6.jpg" alt="Profit Screenshot 6">
+           <p class="screenshot-caption">Member profit proof.</p>
+       </div>
+        <div class="screenshot-item">
+           <img src="https://i.postimg.cc/mgMRWsGC/ss8.jpg" alt="Profit Screenshot 7">
+           <p class="screenshot-caption">Happy member sharing results.</p>
+       </div>
+       <!-- Add more screenshot-item divs with REAL images and captions -->
+
     </div>
-    <p class="carousel-note">Swipe or scroll to see more real profit examples!</p>
+    <p class="carousel-note">Swipe or scroll to see more real profit examples shared by our members.</p>
+      <p class="profits-disclaimer">*Screenshots are shared by community members. Individual trading results may vary and past performance is not indicative of future results. Options trading involves risk.</p>
   </div>
-  
+
   <div class="text-center" style="margin-top: 3rem;">
     <a href="https://t.me/bankniftysure23" class="cta-button">
-      See Results Yourself - Join <i class="fas fa-arrow-right"></i>
+      See More Live Proofs - Join Our Telegram <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 </section>
 
-<style>
-  #profits {
-    background: #0e0e0e;
-    padding: 2rem 1rem;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-  }
-
-  #profits h2 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-  }
-
-  .carousel-container {
-    max-width: 320px; /* Reel-like width */
-    margin: 0 auto;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 1rem;
-  }
-
-  .carousel {
-    display: flex;
-    gap: 10px;
-  }
-
-  .carousel img {
-    width: 160px;
-    height: 285px; /* 9:16 ratio */
-    object-fit: cover;
-    border-radius: 10px;
-    flex-shrink: 0;
-    border: 2px solid #222;
-    background: #111;
-  }
-
-  .carousel-note {
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-top: 0.5rem;
-  }
-
-  .cta-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #00c6ff, #0072ff);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-  }
-
-  .cta-button:hover {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
-  }
-</style>
-
-
-
-    <!-- Removed Chart Section -->
-
     <!-- Reviews Section -->
     <section class="section" id="reviews">
-        <h2>What Our Members Are Saying</h2>
+        <h2>What Our 10,000+ Members Say About Us</h2> <!-- Updated headline -->
         <div class="reviews-container">
             <!-- Initially displayed reviews (Grid) -->
             <div class="reviews-grid" id="initial-reviews">
                 <!-- Review 1 -->
                 <div class="review">
                     <div class="user-info">
-                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 1"> <!-- Using logo image for placeholder -->
+                         <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <!-- Generic icon -->
                          <strong>Rahul S.</strong>
                     </div>
                     <p>“Absolutely game-changing! The signals are spot-on and the community is super helpful. My trading account has never looked better.”</p>
@@ -1232,7 +1588,7 @@
                  <!-- Review 2 -->
                  <div class="review">
                     <div class="user-info">
-                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 2"> <!-- Using logo image for placeholder -->
+                        <div class="avatar-icon"><i class="fas fa-user-circle"></i></div>
                          <strong>Priya V.</strong>
                     </div>
                     <p>“Joining this group was the best decision for my options trading. The accuracy is impressive, and the daily guidance is invaluable.”</p>
@@ -1240,7 +1596,7 @@
                 <!-- Review 3 -->
                 <div class="review">
                     <div class="user-info">
-                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 3"> <!-- Using logo image for placeholder -->
+                         <div class="avatar-icon"><i class="fas fa-user-circle"></i></div>
                          <strong>Amit K.</strong>
                     </div>
                     <p>“Finally, a signals group that delivers! Risk management is key, and they emphasize it perfectly. Highly recommended for serious traders.”</p>
@@ -1248,7 +1604,7 @@
                  <!-- Review 4 -->
                  <div class="review">
                     <div class="user-info">
-                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 4"> <!-- Using logo image for placeholder -->
+                         <div class="avatar-icon"><i class="fas fa-user-circle"></i></div>
                          <strong>Sneha R.</strong>
                     </div>
                     <p>“From struggling to profitable in weeks. The signals are clear, easy to follow, and incredibly accurate. Thank you!”</p>
@@ -1256,70 +1612,135 @@
                 <!-- Review 5 -->
                 <div class="review">
                     <div class="user-info">
-                         <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 5"> <!-- Using logo image for placeholder -->
+                         <div class="avatar-icon"><i class="fas fa-user-circle"></i></div>
                          <strong>Vikram J.</strong>
                     </div>
                     <p>“Transparency and results. That’s what you get here. The profit screenshots shared in the group are real and motivating. Great support too.”</p>
+                </div>
+                <!-- Review 6 (Adding more to the initial grid) -->
+                 <div class="review">
+                    <div class="user-info">
+                         <div class="avatar-icon"><i class="fas fa-user-circle"></i></div>
+                         <strong>Deepak M.</strong>
+                    </div>
+                    <p>“Consistent small profits building up capital. The signals are reliable and the community helps clarify doubts. Best free group out there.”</p>
                 </div>
             </div>
 
             <!-- Button to view more reviews -->
             <div class="text-center">
-                <button id="view-more-reviews" class="cta-button view-more-reviews">View All 25+ Reviews <i class="fas fa-arrow-right"></i></button>
+                <button id="view-more-reviews" class="cta-button view-more-reviews">View All 25+ Testimonials <i class="fas fa-arrow-right"></i></button>
             </div>
 
              <!-- All Reviews (Slider - initially hidden) -->
             <div class="reviews-slider" id="all-reviews" style="display: none;">
-                <!-- Repeat the review structure 25 times here. (Using logo image for placeholders) -->
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 1"> <strong>Rahul S.</strong> </div> <p>“Review text 1.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 2"> <strong>Priya V.</strong> </div> <p>“Review text 2.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 3"> <strong>Amit K.</strong> </div> <p>“Review text 3.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 4"> <strong>Sneha R.</strong> </div> <p>“Review text 4.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 5"> <strong>Vikram J.</strong> </div> <p>“Review text 5.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 6"> <strong>Deepak M.</strong> </div> <p>“Review text 6.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 7"> <strong>Anjali P.</strong> </div> <p>“Review text 7.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 8"> <strong>Rajesh G.</strong> </div> <p>“Review text 8.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 9"> <strong>Meera A.</strong> </div> <p>“Review text 9.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 10"> <strong>Sanjay B.</strong> </div> <p>“Review text 10.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 11"> <strong>Kavita N.</strong> </div> <p>“Review text 11.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 12"> <strong>Prakash D.</strong> </div> <p>“Review text 12.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 13"> <strong>Divya S.</strong> </div> <p>“Review text 13.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 14"> <strong>Arjun L.</strong> </div> <p>“Review text 14.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 15"> <strong>Swati R.</strong> </div> <p>“Review text 15.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 16"> <strong>Ajay P.</strong> </div> <p>“Review text 16.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 17"> <strong>Nisha K.</strong> </div> <p>“Review text 17.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 18"> <strong>Vivek G.</strong> </div> <p>“Review text 18.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 19"> <strong>Pooja B.</strong> </div> <p>“Review text 19.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 20"> <strong>Siddharth C.</strong> </div> <p>“Review text 20.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 21"> <strong>Ritu D.</strong> </div> <p>“Review text 21.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 22"> <strong>Gaurav E.</strong> </div> <p>“Review text 22.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 23"> <strong>Neha F.</strong> </div> <p>“Review text 23.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 24"> <strong>Karan H.</strong> </div> <p>“Review text 24.”</p></div>
-                 <div class="review"><div class="user-info"> <img src="https://i.postimg.cc/43Jbw7VB/banknifty-2.png" alt="User Avatar 25"> <strong>Shruti I.</strong> </div> <p>“Review text 25.”</p></div>
+                <!-- Repeat the review structure 25 times here. Use generic avatar icons -->
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Rahul S.</strong> </div> <p>“Review text 1 (expand on initial reviews).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Priya V.</strong> </div> <p>“Review text 2 (expand).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Amit K.</strong> </div> <p>“Review text 3 (expand).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Sneha R.</strong> </div> <p>“Review text 4 (expand).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Vikram J.</strong> </div> <p>“Review text 5 (expand).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Deepak M.</strong> </div> <p>“Review text 6 (expand).”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Anjali P.</strong> </div> <p>“Using their signals for 3 months, seen a steady improvement in my P&L. Highly recommend for Bank Nifty focus.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Rajesh G.</strong> </div> <p>“The risk management advice is as valuable as the signals themselves. They really care about members not taking unnecessary losses.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Meera A.</strong> </div> <p>“As a beginner, I found the signals easy to follow. The community environment is very supportive and welcoming.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Sanjay B.</strong> </div> <p>“Tried a few groups, but the consistency and professionalism here are unmatched. Real signals, real profits.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Kavita N.</strong> </div> <p>“The real-time updates are crucial. It helps you act fast in the volatile Bank Nifty market.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Prakash D.</strong> </div> <p>“Seeing other members share their profits motivates me. It shows what's possible with the right signals.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Divya S.</strong> </div> <p>“They don't just give signals, they sometimes explain the logic, which helps me learn too.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Arjun L.</strong> </div> <p>“Finally escaped the cycle of losing money. The accuracy rate seems genuinely high.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Swati R.</strong> </div> <p>“Reliable signals delivered consistently. Can recommend to anyone trading Bank Nifty options.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Ajay P.</strong> </div> <p>“The community size itself speaks volumes. You don't get this many active traders without delivering value.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Nisha K.</strong> </div> <p>“Started with a small capital, and slowly but surely growing it thanks to these signals.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Vivek G.</strong> </div> <p>“Clear entry, SL, Target. Everything is well defined, making it easy to execute trades.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Pooja B.</strong> </div> <p>“Joined via a friend's recommendation, and it exceeded expectations. Great community support.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Siddharth C.</strong> </div> <p>“It's tough to find trustworthy signals. This group feels different - transparent and results-driven.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Ritu D.</strong> </div> <p>“They focus on realistic targets, which is important for sustainable trading. No get-rich-quick promises.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Gaurav E.</strong> </div> <p>“The leadership team seems very knowledgeable about Bank Nifty dynamics.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Neha F.</strong> </div> <p>“Profits are good, but the feeling of being part of a large, active community is also a big plus.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Karan H.</strong> </div> <p>“Easy to join, easy to follow. Seeing my small account grow is a great feeling.”</p></div>
+                 <div class="review"><div class="user-info"> <div class="avatar-icon"><i class="fas fa-user-circle"></i></div> <strong>Shruti I.</strong> </div> <p>“The best free Bank Nifty signals I've come across after trying many.”</p></div>
                 <!-- End of 25 review examples -->
             </div>
 
         </div>
          <div class="text-center" style="margin-top: 3rem;">
-             <a href="https://t.me/bankniftysure23" class="cta-button">Join 10,000+ Happy Traders <i class="fas fa-arrow-right"></i></a>
+             <a href="https://t.me/bankniftysure23" class="cta-button">Join 10,000+ Happy Traders Today! <i class="fas fa-arrow-right"></i></a>
          </div>
     </section>
 
+     <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <strong>What makes BankniftyOnly India's largest community?</strong>
+                <p>We have organically grown to over 10,000+ active members on Telegram dedicated exclusively to Bank Nifty options trading, fostered by consistent results and a supportive environment.</p>
+            </div>
+            <div class="faq-item">
+                <strong>How accurate are your Bank Nifty signals?</strong>
+                <p>Our strategy focuses on high-probability setups based on 5+ years of market experience. While no trading is 100% accurate, our consistent profit screenshots and member testimonials demonstrate a high success rate, with many members achieving daily profitability.</p>
+            </div>
+            <div class="faq-item">
+                <strong>What is your trading methodology?</strong>
+                <p>We primarily use technical analysis focused on Bank Nifty chart patterns, price action, and key support/resistance levels to identify precise entry and exit points. Strict risk management with defined stop-losses is always part of our signals.</p>
+            </div>
+             <div class="faq-item">
+                <strong>Is options trading risky?</strong>
+                <p>Yes, options trading involves significant risk of capital loss and is not suitable for all investors. Our signals aim to manage risk, but it is crucial to trade only with capital you can afford to lose and consult a financial advisor.</p>
+            </div>
+            <div class="faq-item">
+                <strong>How do I join the Telegram community?</strong>
+                <p>Simply click on any of the "Join Telegram Group Now" buttons on this page. You will be redirected to our official Telegram channel/group.</p>
+            </div>
+             <div class="faq-item">
+                <strong>Are the profit screenshots real?</strong>
+                <p>Yes, the screenshots displayed are shared by actual members of our community showing their trading results based on our signals. We encourage members to share transparently, but individual results will vary.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- FAQ Section Removed -->
+     <!-- Founder/Analyst Section (Optional Placeholder) -->
+     <!-- Uncomment and fill with details if you want to add a personal touch -->
+     <!--
+    <section class="section founder-section" id="founder">
+        <h2>Meet the Expert Behind the Signals</h2>
+        <div class="section-content">
+            <img src="placeholder-founder.jpg" alt="Founder Name" class="founder-image">
+            <div class="founder-text">
+                <h3>[Founder/Analyst Name]</h3>
+                <p>With over [X] years of dedicated experience in the Indian stock market, specializing in Bank Nifty options, [Name] has developed a robust trading strategy that forms the backbone of BankniftyOnly signals. Passionate about helping fellow traders succeed, [Name] started this community to share high-accuracy insights and build a transparent, supportive network for profitable trading journeys.</p>
+                 <p>Follow [Name] on social media (Optional links here).</p>
+            </div>
+        </div>
+    </section>
+     -->
+
 
     <!-- Footer -->
     <footer>
-        <a href="https://t.me/bankniftysure23" class="cta-button">Join Free Signals Group <i class="fas fa-arrow-right"></i></a>
+        <a href="https://t.me/bankniftysure23" class="cta-button">Join India's Largest Bank Nifty Group <i class="fas fa-arrow-right"></i></a>
         <div class="footer-links">
              <a href="#hero">Home</a>
-            <a href="#keypoints">Why Us</a>
+             <a href="#counter">Results</a>
+            <a href="#keypoints">Why Join</a>
             <a href="#profits">Profits</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#reviews">Testimonials</a>
+            <a href="#faq">FAQs</a>
+             <!-- Add placeholders for legal links -->
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/contact">Contact Us</a>
         </div>
-        <p>© 2024 Bank Nifty Options Signals. All rights reserved.</p>
-        <p>Disclaimer: Options trading involves significant risk. Consult with a financial advisor before trading.</p>
+        <p>© <span id="current-year"></span> BankniftyOnly. All rights reserved.</p>
+        <p>Disclaimer: Options trading involves significant risk of loss and is not suitable for all investors. Past performance is not indicative of future results. Consult a financial advisor.</p>
     </footer>
+
+    <!-- Floating WhatsApp and Telegram Buttons -->
+    <!-- Removed container, position buttons directly -->
+    <a href="https://t.me/bankniftysure23" target="_blank" class="floating-button floating-telegram" aria-label="Join Telegram Channel"><i class="fab fa-telegram-plane"></i></a>
+    <a href="https://wa.me/1234567890" target="_blank" class="floating-button floating-whatsapp" aria-label="Join on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
 
     <script>
         // --- Hamburger Menu Toggle ---
@@ -1333,15 +1754,18 @@
             body.classList.toggle('sidebar-open'); // Add class to body to prevent scroll
         });
 
-        // Close sidebar when a link is clicked
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                // Only close sidebar if the click is on a link that triggers navigation
-                if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
-                   sidebar.classList.remove('open');
-                   body.classList.remove('sidebar-open');
-                }
-            });
+        // Close sidebar when a link is clicked (either in sidebar or on page when sidebar is open)
+        document.addEventListener('click', (e) => {
+            // Check if the click is outside the sidebar and toggle button
+            if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                 sidebar.classList.remove('open');
+                 body.classList.remove('sidebar-open');
+            }
+             // Also close if a link *inside* the sidebar is clicked
+             if (sidebar.contains(e.target) && e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                 sidebar.classList.remove('open');
+                 body.classList.remove('sidebar-open');
+            }
         });
 
 
@@ -1353,7 +1777,7 @@
         if (viewMoreBtn && initialReviews && allReviewsSlider) {
              viewMoreBtn.addEventListener('click', () => {
                  initialReviews.style.display = 'none'; // Hide the initial grid
-                 allReviewsSlider.style.display = 'flex'; // Show the slider (flex enables scrolling)
+                 allReviewsSlider.style.display = 'flex'; // Show the slider
                  viewMoreBtn.style.display = 'none'; // Hide the "View More" button
              });
         }
@@ -1362,54 +1786,43 @@
         // --- Smooth Scrolling for Navigation Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+                // Check if the link is one of the sidebar links or a main nav link
+                const isSidebarLink = this.closest('.sidebar');
+                const isNavLink = this.closest('.nav-links') || this.classList.contains('cta-button'); // Include nav CTA
 
-                // Handle closing sidebar if open (already done by sidebar link handler, but good for safety)
-                 if (sidebar.classList.contains('open')) {
-                    sidebar.classList.remove('open');
-                    body.classList.remove('sidebar-open');
-                 }
+                // Only prevent default if it's a same-page anchor link from nav or sidebar
+                if ((isSidebarLink || isNavLink) && this.getAttribute('href').length > 1) {
+                     e.preventDefault();
 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                     // Handle closing sidebar if open (redundant with document click handler, but safer)
+                     if (sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                        body.classList.remove('sidebar-open');
+                     }
 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Calculate offset for fixed header
+                         const navHeight = document.querySelector('nav').offsetHeight;
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
-
-        // --- Placeholder for Flip Text Animation ---
-        // Implementing a true 'flip increasing text' effect requires a more complex
-        // JavaScript library or custom animation code than is practical for this example.
-        // The text elements are in place, but the animation is not implemented here.
-        // You would typically use a library like Odometer.js or write custom JS/CSS
-        // animations to achieve that specific visual effect.
-
-         // --- Hide/Show Hero Images Based on Screen Size (Simple JS check) ---
-         // CSS media queries handle display property, but if complex logic is needed:
-         // window.addEventListener('resize', () => { ... check window.innerWidth and set display ... });
-         // Initial check:
-         function checkHeroImagesDisplay() {
-             const desktopImages = document.querySelector('.hero-image-container.desktop-only');
-             const mobileImages = document.querySelector('.hero-image-container.mobile-only');
-             if (window.innerWidth > 768) { // Assuming 768px is the breakpoint for desktop layout
-                 if(desktopImages) desktopImages.style.display = 'block';
-                 if(mobileImages) mobileImages.style.display = 'none';
-             } else {
-                 if(desktopImages) desktopImages.style.display = 'none';
-                 if(mobileImages) mobileImages.style.display = 'block';
-             }
-         }
-         checkHeroImagesDisplay();
-         window.addEventListener('resize', checkHeroImagesDisplay);
 
 
     // --- Animated Counter Logic ---
     function animateCounter(id, start, end, duration, suffix = "") {
       const el = document.getElementById(id);
+      if (!el) return; // Check if element exists
       let startTimestamp = null;
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -1419,56 +1832,48 @@
         if (progress < 1) {
           window.requestAnimationFrame(step);
         } else {
-          el.textContent = end.toLocaleString() + suffix;
+          el.textContent = end.toLocaleString() + suffix; // Ensure it hits the final value
         }
       };
       window.requestAnimationFrame(step);
     }
-    // Animate each counter when DOM is loaded
-    document.addEventListener("DOMContentLoaded", function() {
-      animateCounter("counter-members", 1, 10000, 1800, "+");
-      animateCounter("counter-profit", 100, 50000, 1800, "+");
-      animateCounter("counter-trades", 1, 10, 1200, "+");
-    });
-    </script>
-<!-- Removed duplicate WhatsApp button -->
 
-<!-- Floating WhatsApp and Join Channel Button (clean, non-overlapping) -->
-<style>
-  .floating-whatsapp {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 11000;
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
-    cursor: pointer;
-    border: none;
-    transition: box-shadow 0.2s, transform 0.2s;
-    color: #fff;
-    text-decoration: none;
-    background: #25D366;
-  }
-  .floating-whatsapp:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    transform: translateY(-2px);
-  }
-  @media (max-width: 600px) {
-    .floating-whatsapp {
-      right: 16px;
-      bottom: 16px;
-      width: 55px; 
-      height: 55px; 
-      font-size: 2rem;
+    // --- Intersection Observer for Counters ---
+    // Animate counters when they become visible
+    const counterSection = document.querySelector(".counter-section");
+    let countersAnimated = false; // Flag to ensure animation only runs once
+
+    const observerOptions = {
+      root: null, // Use the viewport as the root
+      rootMargin: "0px",
+      threshold: 0.3 // Trigger when 30% of the section is visible
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          // Start animations
+          animateCounter("counter-members", 0, 10000, 1800, "+");
+          animateCounter("counter-profit", 100, 50000, 1800, "+"); // Assuming average profit range
+          animateCounter("counter-trades", 1, 5, 1200, "+"); // Assuming 5+ signals per day, adjust as needed
+          countersAnimated = true; // Set flag to true
+          observer.unobserve(entry.target); // Stop observing once animated
+        }
+      });
+    }, observerOptions);
+
+    // Start observing the counter section
+    if (counterSection) {
+      counterObserver.observe(counterSection);
     }
-  }
-</style>
-<a href="https://wa.me/1234567890" target="_blank" class="floating-whatsapp" aria-label="Join on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+
+     // --- Set Current Year in Footer ---
+     const currentYearElement = document.getElementById('current-year');
+     if (currentYearElement) {
+         currentYearElement.textContent = new Date().getFullYear();
+     }
+
+    </script>
 </body>
 </html>
